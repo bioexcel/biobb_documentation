@@ -21,6 +21,7 @@ Contents
    Execution <execution>
    Documentation <documentation>
    Schemas <schemas>
+   Adapters <adapters>
    Upload your package to bioconda <upload>
 
 Indices and tables
