@@ -11,8 +11,3 @@ some text
 ## Properties
 
 some text
-
-
-```python
-
-```

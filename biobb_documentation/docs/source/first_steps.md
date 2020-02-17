@@ -11,8 +11,3 @@ some text
 ## Files structure
 
 some text
-
-
-```python
-
-```

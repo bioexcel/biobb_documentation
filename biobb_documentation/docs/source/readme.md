@@ -1,4 +1,4 @@
-
+[![](https://readthedocs.org/projects/biobb-documentation/badge/?version=latest)](https://biobb-documentation.readthedocs.io/en/latest/?badge=latest)
 
 # biobb_documentation
 
