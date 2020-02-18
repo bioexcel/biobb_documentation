@@ -16,6 +16,7 @@ Contents
    :maxdepth: 1
 
    First steps <first_steps>
+   Files structure <files_structure>
    Arguments <arguments>
    Python structure <python_structure>
    Execution <execution>
