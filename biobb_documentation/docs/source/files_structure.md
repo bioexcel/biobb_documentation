@@ -1,27 +1,27 @@
 # Files structure
 
-Taking a look to the biobb_template files structure, we will find something like that:
+Taking a look to the **biobb_template** files structure, we will find something like that:
 
 * biobb_template/
-	* biobb_template/
-		* \_\_init\_\_.py
+    * \_\_init\_\_.py
+    * adapters/
         * cwl/
-		* docs/
-		* json_schemas/
-        * notebooks/
         * pycompss/
-        * template/
-			* \_\_init\_\_.py
-			* template.py
-			* template_container.py
-		* test/
-    * conda_env/
-        * biobb_template.pth
-        * environment.yml
-	* .gitignore
-	* LICENSE
-	* README.md
-	* setup.py
+    * docs/
+    * json_schemas/
+    * notebooks/
+    * template/
+        * \_\_init\_\_.py
+        * template.py
+        * template_container.py
+    * test/
+* conda_env/
+    * biobb_template.pth
+    * environment.yml
+* .gitignore
+* LICENSE
+* README.md
+* setup.py
 
 ## biobb_template
 
@@ -37,11 +37,21 @@ name = "biobb_template"
 __all__ = ["template"]
 ```
 
-### cwl folder
+### adapters folder
 
-This folder contains the [**Common Workflow Language**](https://www.commonwl.org/) template to use the **BioBBs** with several workflow managers. More examples of **BioBB** adapters can be found in [https://github.com/bioexcel/biobb_adapters/](https://github.com/bioexcel/biobb_adapters/).
+This folder contains templates' adapters to use the **BioBBs** with several workflow managers. More examples of **BioBB** adapters can be found at [https://github.com/bioexcel/biobb_adapters/](https://github.com/bioexcel/biobb_adapters/).
+
+#### cwl folder
+
+This folder contains the [**Common Workflow Language**](https://www.commonwl.org/) template.
 
 More information in the [CWL section](https://biobb-documentation.readthedocs.io/en/latest/adapters.html#cwl).
+
+#### pycompss folder
+
+This folder contains the [**PyCOMPSs**](https://pypi.org/project/pycompss/) template.
+
+More information in the [PyCOMPSs section](https://biobb-documentation.readthedocs.io/en/latest/adapters.html#pycompss).
 
 ### docs folder
 
@@ -55,11 +65,9 @@ The JSON Schemas of all the wrappers are stored in this tool. In addition, there
 
 More information in the [JSON Schemas section](https://biobb-documentation.readthedocs.io/en/latest/schemas.html#json-schemas).
 
-### pycompss folder
+### notebooks folder
 
-This folder contains the [PyCOMPSs](https://pypi.org/project/pycompss/) template to use the **BioBBs** with several workflow managers. More examples of **BioBB** adapters can be found in [https://github.com/bioexcel/biobb_adapters/](https://github.com/bioexcel/biobb_adapters/).
-
-More information in the [PyCOMPSs section](https://biobb-documentation.readthedocs.io/en/latest/adapters.html#pycompss).
+This folder contains a template with examples of the execution of *biobb_template* tools in [Jupyter Notebook](https://jupyter.org/).
 
 ### template folder
 
@@ -135,7 +143,7 @@ In this YAML file we find all the pakcages that will be installed in our conda e
 
 ### .gitignore
 
-A **gitignore** file specifies intentionally untracked files that Git should ignore. 
+A **.gitignore** file specifies intentionally untracked files that Git should ignore. 
 
 ### LICENSE
 

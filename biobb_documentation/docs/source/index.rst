@@ -19,10 +19,10 @@ Contents
    Files structure <files_structure>
    Arguments <arguments>
    Python structure <python_structure>
-   Execution <execution>
    Documentation <documentation>
    Schemas <schemas>
    Adapters <adapters>
+   Execution <execution>
    Upload your package to bioconda <upload>
 
 Indices and tables

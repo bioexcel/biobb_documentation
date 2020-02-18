@@ -67,4 +67,4 @@ conda activate biobb_template
 
 ### Binary paths configuration
 
-Additionnally, it's recommendable to configure binary paths in your environment in order to easy the command line execution. More info about this subject can be found in the [Execution in command line](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section.
+Additionnally, it's recommendable to configure binary paths in your environment in order to easy the command line execution. More info about this subject can be found in the [Binary path configuration](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section.

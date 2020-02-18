@@ -8,24 +8,32 @@ First off, we recommend to configure binary paths in your environment in order t
 
 #### Create binary folder
 
+Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+
 ```Shell
 mkdir /home/user_name/projects/bin
 ```
 
 #### Change python file permissions
 
+Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+
 ```Shell
-chmod +x /home/user_name/projects/biobb_template/biobb_template/biobb_template/template/template.py
+chmod +x /home/user_name/projects/biobb_template/biobb_template/template/template.py
 ```
 
 #### Create symlink to python file
 
+Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+
 ```Shell
 cd /home/user_name/projects/bin
-ln -s /home/user_name/projects/biobb_template/biobb_template/biobb_template/template/template.py template
+ln -s /home/user_name/projects/biobb_template/biobb_template/template/template.py template
 ```
 
 #### Create conda activate actions
+
+Remember to change the */[anaconda-path]* and the */home/user_name/projects/* path to the real paths on your computer.
 
 ```Shell
 cd /[anaconda-path]/envs/biobb_template/etc
@@ -37,6 +45,8 @@ printf '#!/usr/bin/env bash\n\nexport BIOBB_OLD_PATH=$PATH\nexport PATH=/home/us
 ```
 
 #### Create conda deactivate actions
+
+Remember to change the */[anaconda-path]* and the */home/user_name/projects/* path to the real paths on your computer.
 
 ```Shell
 cd /[anaconda-path]/envs/biobb_template/etc/conda
