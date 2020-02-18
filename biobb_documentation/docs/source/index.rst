@@ -15,6 +15,7 @@ Contents
 .. toctree::
    :maxdepth: 1
 
+   Introduction <readme>
    First steps <first_steps>
    Files structure <files_structure>
    Arguments <arguments>
@@ -33,7 +34,7 @@ Indices and tables
 * :ref:`search`
 
 `Github repository <https://github.com/bioexcel/biobb_documentation>`_.
-===================================================================
+======================================================================
 
 .. raw:: html
     :file: schema.html

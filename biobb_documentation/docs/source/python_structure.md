@@ -4,7 +4,7 @@ In this section we will describe the basic structure of the wrapped tool python 
 
 ## Template
 
-Structure description for the **Template** class of the *biobb_template/biobb_template/template/template.py* file. The file is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py).
+Structure description for the **Template** class of the *biobb_template/biobb_template/template/template.py* file. The complete source code is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py).
 
 ### Imports
 
@@ -122,7 +122,7 @@ def launch(self):
     """Launches the execution of the template module."""
 ```
 
-#### loggers definition
+#### Loggers definition
 Definition of local loggers from launchlogger decorator
 
 
@@ -132,7 +132,7 @@ out_log = getattr(self, 'out_log', None)
 err_log = getattr(self, 'err_log', None)
 ```
 
-#### properties checking
+#### Properties checking
 Check if provided properties match with the ones defined for this tool.
 
 
@@ -224,7 +224,7 @@ return returncode
 
 ## Template Container
 
-Structure description for the **TemplateContainer** class of the *biobb_template/biobb_template/template/template_container.py* file. The file is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py).
+Structure description for the **TemplateContainer** class of the *biobb_template/biobb_template/template/template_container.py* file. The complete source code is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py).
 
 ### Imports
 
@@ -356,7 +356,7 @@ def launch(self):
     """Launches the execution of the template_container module."""
 ```
 
-#### loggers definition
+#### Loggers definition
 Definition of local loggers from launchlogger decorator
 
 
@@ -366,7 +366,7 @@ out_log = getattr(self, 'out_log', None)
 err_log = getattr(self, 'err_log', None)
 ```
 
-#### properties checking
+#### Properties checking
 Check if provided properties match with the ones defined for this tool.
 
 
