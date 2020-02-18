@@ -30,13 +30,13 @@ Properties can be passed to a **BioBB** in different ways:
     * **JSON**
  
 ```Shell
-template --config template.yml --input_file_path1 input1 --input_file_path2 input2 --output_file_path output.zip
+template --config template.yml --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
     
 * As a string: in case we launch a **BioBB** through command line, we can also pass the properties in a string in **JSON format**.
 
 ```Shell
-template --config '{"boolean_property":false}' --input_file_path1 input1 --input_file_path2 input2 --output_file_path output.zip
+template --config '{"boolean_property":false}' --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
 
 * As a Python dictionary: properties can also be passed to the Python class as a **Python dictionary** directly to the **properties argument** of the Python class.
@@ -45,9 +45,9 @@ template --config '{"boolean_property":false}' --input_file_path1 input1 --input
 prop = {
     "boolean_property": False
 }
-Template(input_file_path1=input_file_path1, 
-         input_file_path2=input_file_path2, 
-         output_file_path=output_file_path, 
+Template(input_file_path1=input1, 
+         input_file_path2=input2, 
+         output_file_path=output, 
          properties=prop).launch()
 ```
 
