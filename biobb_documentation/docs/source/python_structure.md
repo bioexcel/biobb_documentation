@@ -2,7 +2,7 @@
 
 In this section we will describe the basic structure of the wrapped tool python files.
 
-## Template
+## Template class
 
 Structure description for the **Template** class of the *biobb_template/biobb_template/template/template.py* file. The complete source code is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py).
 
@@ -123,7 +123,7 @@ def launch(self):
 ```
 
 #### Loggers definition
-Definition of local loggers from launchlogger decorator
+Definition of local loggers from launchlogger decorator.
 
 
 ```python
@@ -222,7 +222,7 @@ if self.remove_tmp:
 return returncode
 ```
 
-## Template Container
+## TemplateContainer class
 
 Structure description for the **TemplateContainer** class of the *biobb_template/biobb_template/template/template_container.py* file. The complete source code is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py).
 
@@ -357,7 +357,7 @@ def launch(self):
 ```
 
 #### Loggers definition
-Definition of local loggers from launchlogger decorator
+Definition of local loggers from launchlogger decorator.
 
 
 ```python
@@ -389,7 +389,7 @@ if self.restart:
 ```
 
 #### Copy inputs to container
-Creation of a temporary folder and assign the input file(s) path(s) to the *container_volume_path* path.
+Creation of a temporary folder and map it to the *container_volume_path* path.
 
 
 ```python
@@ -442,7 +442,7 @@ returncode = cmd_wrapper.CmdWrapper(cmd, out_log, err_log, self.global_log).laun
 
 #### Output data retrieval
 
-Copy output file(s) from inside the container to the definitive output path defined by the user in the arguments.
+Copy output file(s) from the mapped *container_volume_path* inside the container to the definitive output path defined by the user in the arguments.
 
 
 ```python

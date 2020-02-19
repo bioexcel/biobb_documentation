@@ -23,23 +23,35 @@ In the *biobb_template* example there is **one output**:
 
 ## Properties
 
+### What are the properties?
+
+**BioExcel Building Blocks** are wrappers of third-party tools. Most of these tools need specific parameters in order to be executed properly. For this purpose, **BioBBs** provide the ability of passing specific properties to each tool. In the *biobb_template* example several properties are sent to the tool, and the definition of each of these properties is explained in detail in this same section.
+
+### Pass properties to BioBBs
+
 Properties can be passed to a **BioBB** in different ways:
 
-* As a file: creating a **config file** that will be passed to the Python class as an **input file path** in a command line call. Accepted formats:
-    * **YAML**
-    * **JSON**
+#### As a file
+
+Creating a **config file** that will be passed to the Python class as an **input file path** in a command line call. Accepted formats:
+* **YAML**
+* **JSON**
  
 ```Shell
 template --config template.yml --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
     
-* As a string: in case we launch a **BioBB** through command line, we can also pass the properties in a string in **JSON format**.
+#### As a string
+
+In case we launch a **BioBB** through command line, we can also pass the properties in a string in **JSON format**.
 
 ```Shell
 template --config '{"boolean_property":false}' --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
 
-* As a Python dictionary: properties can also be passed to the Python class as a **Python dictionary** directly to the **properties argument** of the Python class.
+#### As a Python dictionary
+
+Properties can also be passed to the Python class as a **Python dictionary** directly to the **properties argument** of the Python class.
 
 ```Python
 prop = {
@@ -58,7 +70,7 @@ In the *biobb_template* example there are two wrappers:
 
 The properties for both examples are different since the execution of tools through container need specific properties.
 
-### Template
+### Template class
 
 Below there is the dictionary of properties for the **template.py** tool:
 
@@ -71,7 +83,7 @@ There are two types of properties in this template:
 
 #### Specific properties for this BioBB
 
-* **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*).
+* **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*). In the *biobb_template* example, this property enables / disables the verbose (-v) operation.
 * **executable_binary_property** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
 
 #### Properties common in all BioBB
@@ -86,7 +98,7 @@ There are two types of properties in this template:
 
 As we can see, not all of these properties are defined in the **template.py** tool. If they are not defined, the system assigns default values to them.
 
-### Template Container
+### TemplateContainer class
 
 Below there is the dictionary of properties for the **template_container.py** tool:
 
@@ -105,7 +117,7 @@ There are three types of properties in this template:
 
 #### Specific properties for this BioBB
 
-* **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*).
+* **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*). In the *biobb_template* example, this property enables / disables the verbose (-v) operation.
 * **executable_binary_property** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
 
 #### Container specific properties

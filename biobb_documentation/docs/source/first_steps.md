@@ -2,19 +2,19 @@
 
 ## Introduction
 
-In the recent years, the improvement of **software** and **hardware performance** has made biomolecular simulations a mature tool for the study of biological processes. Simulation length and the size and **complexity** of the **analyzed systems** make simulations both complementary and compatible with other bioinformatics disciplines. However, the characteristics of the software packages used for simulation have prevented the adoption of the technologies accepted in other bioinformatics fields like automated **deployment systems**, **workflow orchestration**, or the use of **software containers**. We faced the challenge to bring biomolecular simulations to the “bioinformatics way of working”. The exercise has led to the development of the **BioExcel Building Blocks (BioBB)** library. BioBB’s are built as **Python wrappers** to provide an interoperable architecture. BioBB’s have been integrated in a chain of usual software management tools to generate **data ontologies**, **documentation**, **installation packages**, **software containers** and ways of integration with **workflow managers**, that make them usable in most computational environments.
+In the recent years, the improvement of **software** and **hardware performance** has made biomolecular simulations a mature tool for the study of biological processes. Simulation length and the size and **complexity** of the **analyzed systems** make simulations both complementary and compatible with other bioinformatics disciplines. However, the characteristics of the software packages used for simulation have prevented the adoption of the technologies accepted in other bioinformatics fields like automated **deployment systems**, **workflow orchestration**, or the use of **software containers**. We faced the challenge to bring biomolecular simulations to the “bioinformatics way of working”. The exercise has led to the development of the **BioExcel Building Blocks (BioBB's)** library. **BioBB's** are built as **Python wrappers** to provide an interoperable architecture. BioBB’s have been integrated in a chain of usual software management tools to generate **data ontologies**, **documentation**, **installation packages**, **software containers** and ways of integration with **workflow managers**, that make them usable in most computational environments.
 
 ### Useful links
 
-The **BioExcel Building Blocks** are described in the [official website](http://mmb.irbbarcelona.org/biobb/).
+The **BioExcel Building Blocks (BioBB's)** are described in the [official website](http://mmb.irbbarcelona.org/biobb/).
 
-The repositories index of **BioExcel Building Blocks** is available in [GitHub](https://github.com/bioexcel/biobb)
+The repositories index of **BioExcel Building Blocks (BioBB's)** is available in [GitHub](https://github.com/bioexcel/biobb)
 
-In this manual we will detail how to build a new BioBB module or package using the [biobb_template](https://github.com/bioexcel/biobb_template) as a base.
+In this manual we will detail how to build a new **BioBB** module or package using the [biobb_template](https://github.com/bioexcel/biobb_template) as a base.
 
 ### Citation
 
-When using **BioExcel Building Blocks** please cite:
+When using **BioExcel Building Blocks (BioBB's)** please cite:
 
 [BioExcel Building Blocks, a software library for interoperable biomolecular simulation workflows.](https://www.nature.com/articles/s41597-019-0177-4)<br>
 Pau Andrio, Adam Hospital, Javier Conejero, Luis Jordá, Marc Del Pino, Laia Codo, Stian Soiland-Reyes, Carole Goble, Daniele Lezzi, Rosa M. Badia, Modesto Orozco & Josep Ll. Gelpi  *Nature Scientific Data*, 09/2019, Volume 6, Issue 1, p.169, (2019)

@@ -75,7 +75,7 @@ In this folder, we can find all the wrappers. In the *biobb_template* case there
 
 #### \_\_init\_\_.py
 
-Files named **\_\_init\_\_.py** are used to mark directories on disk as Python package directories. In this second level we define the folder name (*template*) and all the modules contained in this package, only two in this example (*template* and *template_container*):
+Files named **\_\_init\_\_.py** are used to mark directories on disk as Python package directories. In this second level we define the folder name (*template*) and all the tools contained in this folder, only two in this example (*template* and *template_container*):
 
 
 ```python

@@ -17,6 +17,7 @@ Contents
 
    Introduction <readme>
    First steps <first_steps>
+   Templates <templates>
    Files structure <files_structure>
    Arguments <arguments>
    Python structure <python_structure>
