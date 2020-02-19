@@ -35,7 +35,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-
+    'recommonmark'
 ]
 
 # Using Google docstring style
@@ -53,7 +53,7 @@ templates_path = ['_templates']
 
 # -- Integrate markdown ---------------------------------------------------
 source_parsers = {
-   '.md': 'recommonmark',
+   '.md': 'recommonmark.parser.CommonMarkParser',
 }
 
 source_suffix = ['.rst', '.md']
