@@ -53,7 +53,7 @@ templates_path = ['_templates']
 
 # -- Integrate markdown ---------------------------------------------------
 source_parsers = {
-   '.md': 'recommonmark.parser.CommonMarkParser',
+   '.md': 'recommonmark',
 }
 
 source_suffix = ['.rst', '.md']

@@ -113,7 +113,7 @@ This folder contains media (mainly **images** and **css** files) related to the 
 
 ##### command_line.md
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
 
 Command line file in **Markdown** created from the **Jupyter Notebook** file in the jupyter folder.
 
@@ -253,7 +253,7 @@ The command line of the *biobb_template* has been written in **Jupyter Notebook*
 
 * **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
-* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
 
 For executing the **Jupyter Notebbok** folder, please do the next steps:
 
