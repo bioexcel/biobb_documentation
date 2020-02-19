@@ -17,7 +17,7 @@ The documentation of a **BioBB** package is divided into three parts:
 
 **README.md** file written in **Markdown** language that is a copy of the main **README.md** file of the **BioBB** package. The **README.md** source code of de *biobb_template* documentation is located in:
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
 
 ### API documentation
 
@@ -35,7 +35,7 @@ This file is written in **Markdown**, though to easy the writting process (and a
 
 * **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
-* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
 
 [Click here](https://biobb-template.readthedocs.io/en/latest/index.html) to access to the index page documentation of the *biobb_template*.
 
@@ -95,7 +95,7 @@ This folder contains a single *command_line_template.ipynb* file that is used to
 
 The **Jupyter Notebook** file can be found at:
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyt...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
 Note that in order to easy the command line execution it’s recommendable to configure binary paths in your environment. More info about this subject can be found in the [Binary path configuration](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section.
 
@@ -113,21 +113,19 @@ This folder contains media (mainly **images** and **css** files) related to the 
 
 ##### command_line.md
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
 
 Command line file in **Markdown** created from the **Jupyter Notebook** file in the jupyter folder.
 
 ##### conf.py
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py]
-(https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py)
 
 [Read the Docs](https://readthedocs.org/) configuration file.
 
 ##### index.rst
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst]
-(https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst)
 
 Documentation index file written in **reStructuredText**.
 
@@ -139,7 +137,7 @@ Modules section index file written in **reStructuredText**.
 
 ##### readme.md
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
 
 **README.md** file written in **Markdown** language that is a copy of the main **README.md** file of the **BioBB** package. 
 
