@@ -33,9 +33,9 @@ In order to **easy the process** of documentation, the **BioExcel Building Block
 
 This file is written in **Markdown**, though to easy the writting process (and also because there are some code executions in this process), we write it first in **Jupyter Notebook**, and then import it to **Markdown**.
 
-* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
-* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
 
 [Click here](https://biobb-template.readthedocs.io/en/latest/index.html) to access to the index page documentation of the *biobb_template*.
 
@@ -47,6 +47,8 @@ As explained in the [Files structure](https://biobb-documentation.readthedocs.io
 
 * **biobb_template/biobb_template/\_\_init\_\_.py**: define the package name (*biobb_template*) and all the modules contained in this package, only one in this example (*template*).
 
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/\_\_init\_\_.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/__init__.py)
+
 
 ```python
 name = "biobb_template"
@@ -54,6 +56,8 @@ __all__ = ["template"]
 ```
 
 * **biobb_template/biobb_template/template/\_\_init\_\_.py**: define the folder name (*template*) and all the tools contained in this folder, only two in this example (*template* and *template_container*).
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/\_\_init\_\_.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/__init__.py)
 
 
 ```python
@@ -64,6 +68,8 @@ __all__ = ["template", "template_container"]
 This two files are used by the [sphinx autodoc extension](http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) for parsing the directories structure of our **BioBB**. Therefore, it's very important to define them properly and put only the **modules / tools** we want to documentate automatically.
 
 ### docs folder
+
+[https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs)
 
 The structure of the docs folder is as follows:
 
@@ -81,14 +87,229 @@ The structure of the docs folder is as follows:
         * template.rst
     * Makefile
     
+#### jupyter folder
 
+[https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/jupyter](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/jupyter)
+
+This folder contains a single *command_line_template.ipynb* file that is used to write the **command line**. documentation.
+
+The **Jupyter Notebook** file can be found at:
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+
+Note that in order to easy the command line execution it’s recommendable to configure binary paths in your environment. More info about this subject can be found in the [Binary path configuration](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section.
+
+#### source folder
+
+[https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
+
+This folder contains all the files needed by the [sphinx autodoc extension](http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) for the creation of the documentation in [Read the Docs](https://readthedocs.org/).
+
+##### _static/ folder
+
+[https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source/_static](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source/_static)
+
+This folder contains media (mainly **images** and **css** files) related to the documentation.
+
+##### command_line.md
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+
+Command line file in **Markdown** created from the **Jupyter Notebook** file in the jupyter folder.
+
+##### conf.py
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py]
+(https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/conf.py)
+
+[Read the Docs](https://readthedocs.org/) configuration file.
+
+##### index.rst
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst]
+(https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/index.rst)
+
+Documentation index file written in **reStructuredText**.
+
+##### modules.rst
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/modules.rst](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/modules.rst)
+
+Modules section index file written in **reStructuredText**.
+
+##### readme.md
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md)
+
+**README.md** file written in **Markdown** language that is a copy of the main **README.md** file of the **BioBB** package. 
+
+##### schema.html
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/schema.html](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/schema.html)
+
+Package description file (written in **HTML**) following the rules of [**schema.org**](https://schema.org/) and more specifically of [**bioschemas.org**](https://bioschemas.org/).
+
+##### template.rst
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/template.rst](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/template.rst)
+
+Template section index file written in **reStructuredText**. This file is an index of the Python files that must be parsed by the [sphinx autodoc extension](http://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html):
+
+```rst
+template package
+=====================
+
+Submodules
+----------
+
+template.template module
+------------------------
+
+.. automodule:: template.template
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+template.template_container module
+----------------------------------
+
+.. automodule:: template.template_container
+    :members:
+    :undoc-members:
+    :show-inheritance:
+```
+
+#### Makefile
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/Makefile](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/Makefile)
+
+Makefile for Sphinx documentation
 
 ## Formats in code comments
 
+As explained before, in order to **automate** the generation of part of the documentation, we must write the comments of our **Python code** in a **specific format**. There are two parts of the code where we have to pay special attention: the definition of the **arguments** just after the class definition and the description of the **functions** just after defining them.
+
 ### Arguments
+
+The arguments must be inside a set of triple quotes just after the class definition in the following format:
+
+```rst
+Description of the module.
+
+Args:
+    arg_name1 (arg_type): Description for argument 1. File type: input / output. `Sample file <url_to_sample_file1>`_. Accepted formats: format1, format2, format3. 
+    arg_name2 (arg_type) (Optional): Description for argument 2. File type: input / output. `Sample file <url_to_sample_file2>`_. Accepted formats: format1, format2.
+    properties (dic):
+        * **property1** (*prop_type*) - (property1_default) Property 1 description.
+        * **property2** (*prop_type*) - (property2_default) Property 2 description. Values: value1, value2, value3.
+        * **property3** (*dic*) - (None) Property 3 description.
+            * **parameter1** (*param_type*) - (parameter1_default) Parameter 1 description. Values: value1, value2, value3.
+```
+
+As seen in the [Template](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py) class:
+
+
+```python
+class Template():
+    """Description for the template (http://templatedocumentation.org) module.
+
+    Args:
+        input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top.
+        input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd.
+        output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip.
+        properties (dic):
+            * **boolean_property** (*bool*) - (True) Example of boolean property.
+            * **executable_binary_property** (*str*) - ("zip") Example of executable binary property.
+            * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
+            * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+    """
+```
+
+Documentation created from the code above:
+
+[https://biobb-template.readthedocs.io/en/latest/template.html#template.template.Template](https://biobb-template.readthedocs.io/en/latest/template.html#template.template.Template)
 
 ### Functions
 
-## Jupyter Notebook
+All the multiline comments inside a set of triple quotes just after the function definition will be used as the function description:
 
-some text
+
+```python
+def launch(self):
+    """Launches the execution of the template module."""
+```
+
+Documentation created from the code above:
+
+[https://biobb-template.readthedocs.io/en/latest/template.html#template.template.Template.launch](https://biobb-template.readthedocs.io/en/latest/template.html#template.template.Template.launch)
+
+## Command line with Jupyter Notebook
+
+**Jupyter Notebook** (formerly IPython Notebooks) is a web-based interactive computational environment for creating [Jupyter](https://jupyter.org/) notebook documents. The *notebook* term can colloquially make reference to many different entities, mainly the Jupyter web application, Jupyter Python web server, or Jupyter document format depending on context. A **Jupyter Notebook** document is a JSON document, following a versioned schema, and containing an ordered list of **input/output cells** which can contain code, text (using Markdown), mathematics, plots and rich media, usually ending with the ".ipynb" extension.
+
+A Jupyter Notebook can be converted to a number of open standard output formats (**HTML**, **presentation slides**, **LaTeX**, **PDF**, **ReStructuredText**, **Markdown**, **Python**) through *Download As* in the web interface, via the nbconvert library or *jupyter nbconvert* command line interface in a shell.
+
+To simplify visualisation of **Jupyter Notebook** documents on the web, the nbconvert library is provided as a service through NbViewer which can take a URL to any publicly available notebook document, convert it to **HTML on the fly** and display it to the user.
+
+The command line of the *biobb_template* has been written in **Jupyter Notebook** and then converted to **Markdown**. Thus, the **Jupyter Notebook file** in the *biobb_template/biobb_template/docs/jupyter* folder is exported to the **command_line.md Markdown file** in the *biobb_template/biobb_template/docs/source* folder.
+
+* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md)
+
+For executing the **Jupyter Notebbok** folder, please do the next steps:
+
+```Shell
+conda activate biobb_template
+cd biobb_template/biobb_template/docs/jupyter
+jupyter notebook
+```
+
+That will open a new tab in your browser:
+
+<img src="_static/jupyter.png" />
+
+Then click on the *command_line_template.ipynb* file, and the browser will open it in the **Jupyter Notebook**.
+
+From now on, you just need to change cells of this template by the ones of your own **BioBB**.
+
+As said before, for the sake of easy the command line execution, it’s recommendable to configure binary paths in your environment. More info about this subject can be found in the [Binary path configuration](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section. If you pay attention you will see that, for example in the first code cell, we have the following instruction:
+
+
+```python
+template -h
+```
+
+That's a command line instruction with the following output (second code cell in the notebook):
+
+
+```python
+usage: template [-h] [--config CONFIG] [--system SYSTEM] [--step STEP] --input_file_path1 INPUT_FILE_PATH1 [--input_file_path2 INPUT_FILE_PATH2] --output_file_path OUTPUT_FILE_PATH
+
+Description for the template module.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --config CONFIG       Configuration file
+  --system SYSTEM       Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help
+  --step STEP           Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help
+  --input_file_path2 INPUT_FILE_PATH2
+                        Description for the second input file path (optional). Accepted formats: dcd.
+
+required arguments:
+  --input_file_path1 INPUT_FILE_PATH1
+                        Description for the first input file path. Accepted formats: top.
+  --output_file_path OUTPUT_FILE_PATH
+                        Description for the output file path. Accepted formats: zip.
+```
+
+But for executing a command line instruction in **Jupyter Notebook**, we need to add a **!** symbol before the instruction:
+
+
+```python
+!template -h
+```
+
+Then we simply remove the **!** symbol for having a matching between the documentation and a real command line instruction.
+
+The rest of the command line instructions of the template can also be executed in the same way.

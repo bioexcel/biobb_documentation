@@ -6,6 +6,8 @@ In the *biobb_template* we provide, amongst the rest of materials, two Python te
 
 ## Template (template.py)
 
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template.py)
+
 This is the basic template for wrapping a tool. This Python file is a wrapper for the [**zip**](http://infozip.sourceforge.net/) tool. The process followed by this script is the following one:
 
 * Receive **input(s)** paths. More information about the inputs can be found in the [Inputs section](https://biobb-documentation.readthedocs.io/en/latest/arguments.html#inputs).
@@ -20,6 +22,8 @@ This is the basic template for wrapping a tool. This Python file is a wrapper fo
 More information about the structure of this file can be found in the [Template section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#template).
 
 ## Template Container (template_container.py)
+
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py)
 
 This is the template for wrapping a tool executed through a container. In this case, the tool to wrap is [**zip**](http://infozip.sourceforge.net/) and two containers are provided: [Docker Hub](https://hub.docker.com/r/mmbirb/zip) and [Singularity Hub](https://singularity-hub.org/) (type `singularity pull shub://bioexcel/zip_container` for installing it in your computer). The process followed by this script is the following one:
 

@@ -8,7 +8,7 @@ First off, we recommend to configure binary paths in your environment in order t
 
 #### Create binary folder
 
-Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+Remember to change the */home/user_name/projects/* path to the real path on your computer.
 
 ```Shell
 mkdir /home/user_name/projects/bin
@@ -16,7 +16,7 @@ mkdir /home/user_name/projects/bin
 
 #### Change python file permissions
 
-Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+Remember to change the */home/user_name/projects/* path to the real path on your computer.
 
 ```Shell
 chmod +x /home/user_name/projects/biobb_template/biobb_template/template/template.py
@@ -24,7 +24,7 @@ chmod +x /home/user_name/projects/biobb_template/biobb_template/template/templat
 
 #### Create symlink to python file
 
-Remember to change the the */home/user_name/projects/* path to the real path on your computer.
+Remember to change the */home/user_name/projects/* path to the real path on your computer.
 
 ```Shell
 cd /home/user_name/projects/bin
