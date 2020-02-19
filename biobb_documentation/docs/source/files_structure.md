@@ -173,7 +173,7 @@ In this YAML file we find all the pakcages that will be installed in our conda e
 * **zip**: Software that will be wrapped in this *biobb_template* examples
 * **conda**: Conda dependency.
 
-## Root files
+# Root files
 
 ### .gitignore
 
