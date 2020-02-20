@@ -189,7 +189,7 @@ License for the package, usually **[Apache License 2.0](https://github.com/bioex
 
 ### README.md
 
-[https://github.com/bioexcel/biobb_template/blob/master/README.md](https://github.com/bioexcel/biobb_template/blob/master/README\.md)
+[https://github.com/bioexcel/biobb_template/blob/master/README.md](https://github.com/bioexcel/biobb_template)
 
 Text file containing useful information about the **BioBB** package.
 
