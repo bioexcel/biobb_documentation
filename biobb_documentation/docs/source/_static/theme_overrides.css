@@ -1,4 +1,7 @@
 /* override table width restrictions as found on https://github.com/getpelican/pelican/issues/1311 */
+a { color:#dcbc3c; }
+a:visited { color:#9e8830; }
+
 .wy-table-responsive table td, .wy-table-responsive table th {
     /* !important prevents the common CSS stylesheets from
        overriding this as on RTD they are loaded after this stylesheet */
@@ -18,4 +21,8 @@
 	background-color: #44b6ae;
 }
 
+.wy-side-nav-search>div.version { color:rgba(255, 255, 255, 1); }
+
 .ethical-rtd.ethical-dark-theme { display: none; }
+
+.icon:before { display:none; }
