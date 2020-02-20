@@ -85,6 +85,8 @@ Although it's not difficult to create a **JSON Schema** by your own, we provide 
 
 Following the instructions of this [**json_generator**](https://github.com/gbayarri/json_generator) tool, especially those referred to the [**files structure**](https://github.com/gbayarri/json_generator#files-structure) and to the [**docs specifications**](https://github.com/gbayarri/json_generator#docs-specifications), the tool will generate these **JSON Schema** files for you.
 
+Additionally, this script also generates the configuration files from the data taken from the *biobb_template/biobb_template/test/conf.yml* file. The script will generate a JSON config file for each module with *properties* defined in its parameters. More information about these configuration files in the [Execution section](https://biobb-documentation.readthedocs.io/en/latest/execution.html#config).
+
 ### Package JSON
 
 Additionally, in the same **json_schemas** folder, there is a JSON file with information related with the **BioBB** package.

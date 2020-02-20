@@ -4,3 +4,8 @@ __pycache__/
 
 # ipynb checkpoints
 .ipynb_checkpoints
+
+# logs
+log.*
+*.err
+*.out

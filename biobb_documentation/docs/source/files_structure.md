@@ -168,10 +168,10 @@ In this YAML file we find all the pakcages that will be installed in our conda e
 
 * **python**: Last available version of python in anaconda.
 * **biobb_common**: BioBB library with all the necessary functions for developing **BioExcel Building Blocks**.
-* **nb_conda_kernels**: This extension enables a Jupyter Notebook application in one conda environment to access kernels for several languages languages found in other environments.
+* **nb_conda_kernels**: This extension enables a Jupyter Notebook application in one conda environment to access kernels for several languages found in other environments.
 * **nose**: Unittest python library.
 * **zip**: Software that will be wrapped in this *biobb_template* examples
-* **conda**: Conda dependency.
+* **conda**: Installs conda client for easy the different conda instructions execution.
 
 ## Root files
 
@@ -218,7 +218,7 @@ setuptools.setup(
         "Documentation": "http://biobb_template.readthedocs.io/en/latest/",
         "Bioexcel": "https://bioexcel.eu/"
     },
-    packages=setuptools.find_packages(exclude=['adapters', 'docs', 'json_schemas', 'notebooks', 'test']),
+    packages=setuptools.find_packages(exclude=['adapters', 'docs', 'test']),
     install_requires=['biobb_common>=2.0.1'],
     python_requires='==3.6.*',
     classifiers=(
@@ -234,6 +234,6 @@ setuptools.setup(
 In this **setup.py file**, the developers must fill several fields such as descriptions, author name, keywords and so on. The most important fields are:
 
 * **version**: version of the package
-* **packages**: the ones excluded won't be automatically parsed when building the documentation. For further information about this process, please visit the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html).
+* **packages**: the ones excluded won't be automatically parsed in the building process of bioconda. It's important to exclude all the folders containing Python files that must be excluded in this building process.
 * **install_requires**: dependencies of this package
 * **python_requires**: version of python
