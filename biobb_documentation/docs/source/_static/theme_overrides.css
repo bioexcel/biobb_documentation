@@ -13,3 +13,9 @@
     max-width: 1200px;
     margin: unset;
 }
+
+.wy-side-nav-search {
+	background-color: #44b6ae;
+}
+
+.ethical-rtd.ethical-dark-theme { display: none; }

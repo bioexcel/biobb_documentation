@@ -33,9 +33,9 @@ In order to **easy the process** of documentation, the **BioExcel Building Block
 
 This file is written in **Markdown**, though to easy the writting process (and also because there are some code executions in this process), we write it first in **Jupyter Notebook**, and then import it to **Markdown**.
 
-* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
-* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
 
 [Click here](https://biobb-template.readthedocs.io/en/latest/index.html) to access to the index page documentation of the *biobb_template*.
 
@@ -95,7 +95,7 @@ This folder contains a single *command_line_template.ipynb* file that is used to
 
 The **Jupyter Notebook** file can be found at:
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyt...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
 Note that in order to easy the command line execution it’s recommendable to configure binary paths in your environment. More info about this subject can be found in the [Binary path configuration](https://biobb-documentation.readthedocs.io/en/latest/execution.html#binary-path-configuration) section.
 
@@ -113,7 +113,7 @@ This folder contains media (mainly **images** and **css** files) related to the 
 
 ##### command_line.md
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
 
 Command line file in **Markdown** created from the **Jupyter Notebook** file in the jupyter folder.
 
@@ -251,9 +251,9 @@ To simplify visualisation of **Jupyter Notebook** documents on the web, the nbco
 
 The command line of the *biobb_template* has been written in **Jupyter Notebook** and then converted to **Markdown**. Thus, the **Jupyter Notebook file** in the *biobb_template/biobb_template/docs/jupyter* folder is exported to the **command_line.md Markdown file** in the *biobb_template/biobb_template/docs/source* folder.
 
-* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jup...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
+* **Jupyter Notebook** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/jupyter/command_line_template.ipynb)
 
-* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/sour...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
+* **Markdown** file: [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/command_line.md](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source)
 
 For executing the **Jupyter Notebbok** folder, please do the next steps:
 

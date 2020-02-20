@@ -8,7 +8,7 @@
 
 Every tool has its own **JSON Schema** with the next structure for the Template tool:
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_sch...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/template.json)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/template.json](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/template.json)
 
 
 ```python
@@ -89,7 +89,7 @@ Following the instructions of this [**json_generator**](https://github.com/gbaya
 
 Additionally, in the same **json_schemas** folder, there is a JSON file with information related with the **BioBB** package.
 
-[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_sch...](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/biobb_template.json)
+[https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/biobb_template.json](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/json_schemas/biobb_template.json)
 
 This information is used for automate the maintenance of the [Source & Docs table](https://mmb.irbbarcelona.org/biobb/availability/source) in the **BioBB** [official website](https://mmb.irbbarcelona.org/biobb).
 
