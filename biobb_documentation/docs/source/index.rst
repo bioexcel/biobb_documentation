@@ -25,7 +25,7 @@ Contents
    Schemas <schemas>
    Adapters <adapters>
    Execution <execution>
-   Unittests <unittestst>
+   Unittests <unittests>
    Upload your package to bioconda <upload>
 
 Indices and tables
