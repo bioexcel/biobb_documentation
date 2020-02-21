@@ -8,6 +8,8 @@ a:visited { color:#9e8830; }
 .wy-table-responsive table td, .wy-table-responsive table th { white-space: normal !important; }
 .wy-table-responsive { overflow: visible !important; }
 
+.wy-menu-vertical a:active { background-color: #29b3b6; }
+
 .wy-nav-content { max-width: 1200px; margin: unset; }
 
 .wy-side-nav-search { background-color: #29b3b6; }
