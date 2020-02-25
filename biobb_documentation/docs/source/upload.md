@@ -44,15 +44,15 @@ Note that tou should change **VERSION** by a correct version number.
 
 ### Chek Read The Docs documentation
 
-After uploading to GitHub, please check that all the documentation generated in Read The Docs is correct:
+All the **BioBB** packages in **GitHub** are linked to **Read the Docs** via [Webhooks](https://developer.github.com/webhooks/), so after **uploading to GitHub**, please check that all the documentation generated in **Read The Docs** is correct:
 
 [https://biobb-template.readthedocs.io/en/latest/index.html](https://biobb-template.readthedocs.io/en/latest/index.html)
 
-More information about how to generate this documentation in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html).
+**More information** about how to generate this documentation in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html).
 
 ### Create pypi repository
 
-```Shell
+```shell
 python3 setup.py sdist bdist_wheel
 python3 -m twine upload dist/* 
 rm -rfv REPOSITORY.egg-info dist build
@@ -62,7 +62,7 @@ Note that you should change **REPOSITORY** by the name of your repository.
 
 ### Create Bioconda repository
 
-```Shell
+```shell
 cd /home/user
 conda skeleton pypi REPOSITORY
 ```
@@ -71,11 +71,11 @@ Note that you should change **REPOSITORY** by the name of your repository.
 
 #### Create recipe
 
-Open *REPOSITORY/meta.yaml* with your IDE and copy **version** and **sha256**.
+The instruction above will create a new */home/user/REPOSITORY* folder. Then open */home/user/REPOSITORY/meta.yaml* with your IDE and copy **version** and **sha256**.
 
 #### Upload to bioconda
 
-```Shell
+```shell
 cd /home/user/projects/bioconda-recipes/recipes
 git checkout -f master
 git pull origin master
@@ -86,33 +86,157 @@ git checkout -b REPOSITORY
 
 Open folder */home/user/projects/bioconda-recipes/recipes/REPOSITORY* with your IDE.
 
-Edit *build.sh* file:
+##### build.sh file
 
-```Shell
+In this file, we transform our Python files in binary files inside the bioconda container.
+
+```shell
 #!/usr/bin/env bash
 
 python3 setup.py install --single-version-externally-managed --record=record.txt
 
 mkdir -p $PREFIX/bin
 
-chmod u+x $SP_DIR/biobb_analysis/gromacs/gmx_rms.py
-cp $SP_DIR/biobb_analysis/gromacs/gmx_rms.py $PREFIX/bin/gmx_rms
+chmod u+x $SP_DIR/REPOSITORY/MODULE/TOOL.py
+cp $SP_DIR/REPOSITORY/MODULE/TOOL.py $PREFIX/bin/TOOL
+```
+In the *biobb_template* example:
+
+* **REPOSITORY**: biobb_template
+* **MODULE**: template
+* **TOOL**: template / template_container
+
+##### meta.yaml file
+
+In this file we describe 
+
+```yaml
+{% set name = "biobb_template" %}
+{% set version = "VERSION" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "HASH" %}
+
+package:
+  name: '\{\{ name|lower \}\}'
+  version: '\{\{ version \}\}'
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
+  '\{\{ hash_type \}\}': '\{\{ hash_value \}\}'
+
+build:
+  number: 0
+  noarch: python
+
+requirements:
+  host:
+    - python
+    - setuptools
+    - biobb_common ==2.0.1
+    - zip
+  run:
+    - python
+    - biobb_common ==2.0.1
+    - zip
+test:
+  imports:
+    - biobb_template
+    - biobb_template.template
+
+about:
+  home: https://github.com/bioexcel/biobb_template
+  license: Apache Software License
+  license_family: APACHE
+  license_file: ''
+  summary: Biobb_template is a complete code template to promote and facilitate the creation of new Biobbs by the community.
+  description: "Description for BioBB biobb_template"
+  doc_url: ''
+  dev_url: ''
+
+extra:
+  recipe-maintainers: ''
 ```
 
-TODO: Explain META.YML
+Where **VERSION** and **HASH** must be changed by the **version** and **sha256** values of the */home/user/REPOSITORY/meta.yaml* file created at the beginning of this folder.
 
-TODO: Explain post-link.sh (NOT RECCOMENDED)
+##### post-link.sh file
 
-Note that you should change **REPOSITORY** by the name of your repository.
+Although this file is not recommended because it can cause some issues in the conda installation, sometimes it's necessary for installing packages that are not in the official conda channels. This packages are installed at the end of the **Bioconda** package installation:
+
+An example of *post-link.sh* code would be:
+
+```shell
+echo "Installing TOOL:"
+conda install -y  -c CHANNEL TOOL==VERSION
+```
 
 ### Create Docker container
 
-If you didn't use a *post-link.sh* file in the previous step, this process is automatic. Otherwise, you should write a Docker recipe and upload it to Docker Hub (TODO)
+If you didn't use a *post-link.sh* file in the previous step, this process is automatic. Otherwise, you should write a Docker recipe and upload it to Docker Hub.
+
+You can write a Docker recipe in thousands of different ways. Here you have an example:
+
+```shell
+FROM ubuntu:18.04
+
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV PATH /opt/conda/bin:$PATH
+
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    git mercurial subversion
+
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
+RUN apt-get install -y curl grep sed dpkg && \
+    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
+    curl -L "https://github.com/krallin/tini/releases/download/v$\{TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
+    dpkg -i tini.deb && \
+    rm tini.deb && \
+    apt-get clean
+
+RUN conda config --add channels defaults
+RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge
+RUN conda install -y biobb_template==VERSION
+
+ENTRYPOINT [ "/usr/bin/tini", "--" ]
+CMD [ "/bin/bash" ]
+```
+
+Where **VERSION** is the version you want to install in this container.
 
 ### Create Singularity container
 
-TODO
+Once the Docker container has been created, we are ready for create the Singularity container.
 
 #### Create recipe
 
+If your Docker container has been created **automatically by Bioconda** and is in *quay.io*, the **Singularity recipe** *Singularity.latest* should be like this:
+
+```shell
+Bootstrap: docker
+From: biobb_template:VERSION--py_0
+Registry: quay.io
+Namespace: biocontainers
+```
+Where **VERSION** is the version you want to install in this container.
+
+If you have created the Docker container **by your own**, the **Singularity recipe** *Singularity.latest* should be like this:
+
+```shell
+Bootstrap: docker
+From: biobb_template:VERSION
+Namespace: REPOSITORY
+```
+Where **VERSION** is the version you want to install in this container and **REPOSITORY** is the name of your repository in [Docker Hub](https://hub.docker.com/).
+
 #### Upload to Singularity
+
+All the **BioBB** packages in **GitHub** are linked to **Singularity Hub** via [Webhooks](https://developer.github.com/webhooks/), so after **uploading to GitHub** the *Singularity.latest* file, you just must wait until the container is created in [Singularity Hub](https://singularity-hub.org/).
