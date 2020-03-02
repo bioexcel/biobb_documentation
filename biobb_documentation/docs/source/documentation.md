@@ -1,3 +1,4 @@
+
 # Documentation
 
 ## Introduction
@@ -282,15 +283,13 @@ That's a command line instruction with the following output (second code cell in
 
 
 ```python
-usage: template [-h] [--config CONFIG] [--system SYSTEM] [--step STEP] --input_file_path1 INPUT_FILE_PATH1 [--input_file_path2 INPUT_FILE_PATH2] --output_file_path OUTPUT_FILE_PATH
+usage: template [-h] [--config CONFIG] --input_file_path1 INPUT_FILE_PATH1 [--input_file_path2 INPUT_FILE_PATH2] --output_file_path OUTPUT_FILE_PATH
 
 Description for the template module.
 
 optional arguments:
   -h, --help            show this help message and exit
   --config CONFIG       Configuration file
-  --system SYSTEM       Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help
-  --step STEP           Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help
   --input_file_path2 INPUT_FILE_PATH2
                         Description for the second input file path (optional). Accepted formats: dcd.
 

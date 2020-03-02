@@ -1,3 +1,4 @@
+
 # Python structure
 
 In this section we will describe the basic structure of the wrapped tool python files.
@@ -57,25 +58,25 @@ In the *main()* function we define the command line inputs and outputs and then 
 
 
 ```python
-parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
-parser.add_argument('--config', required=False, help='Configuration file')
-parser.add_argument('--system', required=False, help='Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help')
-parser.add_argument('--step', required=False, help='Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help')
+def main():
+    parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    parser.add_argument('--config', required=False, help='Configuration file')
 
-# Specific args of each building block
-required_args = parser.add_argument_group('required arguments')
-required_args.add_argument('--input_file_path1', required=True, help='Description for the first input file path. Accepted formats: top.')
-parser.add_argument('--input_file_path2', required=False, help='Description for the second input file path (optional). Accepted formats: dcd.')
-required_args.add_argument('--output_file_path', required=True, help='Description for the output file path. Accepted formats: zip.')
+    # 10. Include specific args of each building block following the examples. They should match step 2
+    required_args = parser.add_argument_group('required arguments')
+    required_args.add_argument('--input_file_path1', required=True, help='Description for the first input file path. Accepted formats: top.')
+    parser.add_argument('--input_file_path2', required=False, help='Description for the second input file path (optional). Accepted formats: dcd.')
+    required_args.add_argument('--output_file_path', required=True, help='Description for the output file path. Accepted formats: zip.')
 
-args = parser.parse_args()
-config = args.config if args.config else None
-properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
-if args.step:
-    properties = properties[args.step]
+    args = parser.parse_args()
+    config = args.config if args.config else None
+    properties = settings.ConfReader(config=config).get_prop_dic()
 
-# Specific call of each building block
-Template(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, output_file_path=args.output_file_path, properties=properties).launch()
+    # 11. Adapt to match Class constructor (step 2)
+    # Specific call of each building block
+    Template(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, 
+             output_file_path=args.output_file_path, 
+             properties=properties).launch()
 ```
 
 ### \_\_init\_\_() function
@@ -84,14 +85,19 @@ In the *\_\_init\_\_()* function initialises the **Template** class. In this fun
 
 
 ```python
+# 2. Adapt input and output file paths as required. Include all files, even optional ones
 def __init__(self, input_file_path1, input_file_path2, output_file_path, properties, **kwargs):
     properties = properties or {}
 
+    # 2.1 Modify to match constructor parameters
     # Input/Output files
     self.io_dict = { 
         'in': { 'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2 }, 
         'out': { 'output_file_path': output_file_path } 
     }
+
+    # 3. Include all relevant properties here as 
+    # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
     self.properties = properties
@@ -148,6 +154,7 @@ If *restart* property is enabled, skip this step. This property is only used for
 ```python
 # Restart
 if self.restart:
+    # 4. Include here all output file paths
     output_file_list = [self.io_dict['out']['output_file_path']]
     if fu.check_complete_files(output_file_list):
         fu.log('Restart is enabled, this step: %s will the skipped' % self.step, out_log, self.global_log)
@@ -163,6 +170,7 @@ Creation of a temporary folder and copy the required input file inside it.
 self.tmp_folder = fu.create_unique_dir()
 fu.log('Creating %s temporary folder' % self.tmp_folder, out_log)
 
+# 5. Include here all mandatory input files
 # Copy input_file_path1 to temporary folder
 shutil.copy(self.io_dict['in']['input_file_path1'], self.tmp_folder)
 ```
@@ -172,13 +180,13 @@ Creation of command line call. If *boolean_property* is enabled, append **-v** o
 
 
 ```python
-# Instructions for command line
+# 6. Prepare the command line parameters as instructions list
 instructions = ['-j']
 if self.boolean_property:
     instructions.append('-v')
     fu.log('Appending optional boolean property', out_log, self.global_log)
 
-# Creting command line
+# 7. Build the actual command line as a list of items (elements order will be maintained)
 cmd = [self.executable_binary_property,
        ' '.join(instructions), 
        self.io_dict['out']['output_file_path'],
@@ -192,7 +200,7 @@ If optional input file provided, copy it to the temporary folder and append it t
 
 
 ```python
-# Add optional input file if provided
+# 8. Repeat for optional input files if provided
 if self.io_dict['in']['input_file_path2']:
     # Copy input_file_path2 to temporary folder
     shutil.copy(self.io_dict['in']['input_file_path2'], self.tmp_folder)
@@ -283,12 +291,11 @@ In the *main()* function we define the command line inputs and outputs and then 
 
 
 ```python
-parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+def main():
+    parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('--config', required=False, help='Configuration file')
-    parser.add_argument('--system', required=False, help='Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help')
-    parser.add_argument('--step', required=False, help='Check "https://biobb-common.readthedocs.io/en/latest/system_step.html" for help')
 
-    # Specific args of each building block
+    # 11. Include specific args of each building block following the examples. They should match step 2
     required_args = parser.add_argument_group('required arguments')
     required_args.add_argument('--input_file_path1', required=True, help='Description for the first input file path. Accepted formats: top.')
     parser.add_argument('--input_file_path2', required=False, help='Description for the second input file path (optional). Accepted formats: dcd.')
@@ -296,12 +303,13 @@ parser = argparse.ArgumentParser(description='Description for the template modul
 
     args = parser.parse_args()
     config = args.config if args.config else None
-    properties = settings.ConfReader(config=config, system=args.system).get_prop_dic()
-    if args.step:
-        properties = properties[args.step]
+    properties = settings.ConfReader(config=config).get_prop_dic()
 
+    # 12. Adapt to match Class constructor (step 2)
     # Specific call of each building block
-    TemplateContainer(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, output_file_path=args.output_file_path, properties=properties).launch()
+    TemplateContainer(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, 
+                      output_file_path=args.output_file_path, 
+                      properties=properties).launch()
 ```
 
 ### \_\_init\_\_() function
@@ -310,14 +318,19 @@ In the *\_\_init\_\_()* function initialises the **TemplateContainer** class. In
 
 
 ```python
+# 2. Adapt input and output file paths as required. Include all files, even optional ones
 def __init__(self, input_file_path1, input_file_path2, output_file_path, properties, **kwargs):
     properties = properties or {}
 
+    # 2.1 Modify to match constructor parameters
     # Input/Output files
     self.io_dict = { 
         'in': { 'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2 }, 
         'out': { 'output_file_path': output_file_path } 
     }
+
+    # 3. Include all relevant properties here as 
+    # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
     self.properties = properties
@@ -382,6 +395,7 @@ If *restart* property is enabled, skip this step. This property is only used for
 ```python
 # Restart
 if self.restart:
+    # 4. Include here all output file paths
     output_file_list = [self.io_dict['out']['output_file_path']]
     if fu.check_complete_files(output_file_list):
         fu.log('Restart is enabled, this step: %s will the skipped' % self.step, out_log, self.global_log)
@@ -393,7 +407,7 @@ Creation of a temporary folder and map it to the *container_volume_path* path.
 
 
 ```python
-# Copy inputs to container
+# 5. Copy inputs to container
 container_io_dict = fu.copy_to_container(self.container_path, self.container_volume_path, self.io_dict)
 ```
 
@@ -402,13 +416,13 @@ Creation of command line call. If *boolean_property* is enabled, append **-v** o
 
 
 ```python
-# Instructions for command line
+# 6. Prepare the command line parameters as instructions list
 instructions = ['-j']
 if self.boolean_property:
     instructions.append('-v')
     fu.log('Appending optional boolean property', out_log, self.global_log)
 
-# Creting command line
+# 7. Build the actual command line as a list of items (elements order will be maintained)
 cmd = [self.executable_binary_property,
        ' '.join(instructions), 
        container_io_dict['out']['output_file_path'],
@@ -422,7 +436,7 @@ If optional input file provided append it to the command line call.
 
 
 ```python
-# Add optional input file if provided
+# 8. Repeat for optional input files if provided
 if container_io_dict['in']['input_file_path2']:
     # Append optional input_file_path2 to cmd
     cmd.append(container_io_dict['in']['input_file_path2'])
@@ -435,8 +449,17 @@ Creation of command line according to the *container_path* property and the rest
 
 
 ```python
-# Create cmd and launch execution
-cmd = fu.create_cmd_line(cmd, container_path=self.container_path, host_volume=container_io_dict.get('unique_dir'), container_volume=self.container_volume_path, container_working_dir=self.container_working_dir, container_user_uid=self.container_user_id, container_image=self.container_image, container_shell_path=self.container_shell_path, out_log=out_log, global_log=self.global_log)
+# 10. Create cmd with specdific syntax according to the required container
+cmd = fu.create_cmd_line(cmd, container_path=self.container_path, 
+                         host_volume=container_io_dict.get('unique_dir'), 
+                         container_volume=self.container_volume_path, 
+                         container_working_dir=self.container_working_dir, 
+                         container_user_uid=self.container_user_id, 
+                         container_image=self.container_image, 
+                         container_shell_path=self.container_shell_path, 
+                         out_log=out_log, global_log=self.global_log)
+
+# Launch execution
 returncode = cmd_wrapper.CmdWrapper(cmd, out_log, err_log, self.global_log).launch()
 ```
 
