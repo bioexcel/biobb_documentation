@@ -110,7 +110,12 @@ This folder contains all the files needed by the [sphinx autodoc extension](http
 
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source/_static](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source/_static)
 
-This folder contains media (mainly **images** and **css** files) related to the documentation.
+This folder contains media related to the documentation:
+
+* bioexcel_logo.png: image logo of the [BioExcel Project](https://bioexcel.eu/)
+* logo.png: **BioExcel Building Blocks** image logo
+* theme_overrides.css: styles file for customising Read the Docs documentation
+* theme_overrides.js: JavaScript file for customising Read the Docs documentation
 
 ##### command_line.md
 
