@@ -19,7 +19,7 @@ This is the basic template for wrapping a tool. This Python file is a wrapper fo
 * Remove the **temporary folder** if the user has not said otherwise.
 * If everything worked, the output file will be in the path provided to the tool.
 
-More information about the structure of this file can be found in the [Template section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#template).
+More information about the structure of this file can be found in the [Template section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#template-class).
 
 ## Template Container (template_container.py)
 

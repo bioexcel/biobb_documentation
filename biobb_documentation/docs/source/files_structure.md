@@ -45,7 +45,7 @@ __all__ = ["template"]
 
 ### adapters folder
 
-> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#gitignore)
 
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/adapters](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/adapters)
 
@@ -85,7 +85,7 @@ More information in the [JSON Schemas section](https://biobb-documentation.readt
 
 ### notebooks folder
 
-> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#gitignore)
 
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/notebooks](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/notebooks)
 
@@ -135,7 +135,7 @@ More information about the files structure of this folder and the execution of t
 
 ## conda_env
 
-> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#gitignore)
 
 [https://github.com/bioexcel/biobb_template/tree/master/conda_env](https://github.com/bioexcel/biobb_template/tree/master/conda_env)
 
