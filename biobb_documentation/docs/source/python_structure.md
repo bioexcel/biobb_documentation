@@ -1,4 +1,3 @@
-
 # Python structure
 
 In this section we will describe the basic structure of the wrapped tool python files.
@@ -22,34 +21,62 @@ from biobb_common.command_wrapper import cmd_wrapper
 
 Libraries used for the execution of the **Template** class.
 
-### Comments
+### Docstrings
 
-The automatic documentation generation system through [**sphinx**](https://www.sphinx-doc.org/en/master/) is explained in detail in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html).
+The automatic documentation generation system through [**sphinx**](https://www.sphinx-doc.org/en/master/) is explained in detail in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html#formats-in-code-comments).
 
 In the first line of the Template class we define all the arguments explained in the [Arguments](https://biobb-documentation.readthedocs.io/en/latest/arguments.html) section inside a set of triple quotes:
 
 
 ```python
-"""Description for the template (http://templatedocumentation.org) module.
+"""
+| biobb_template Template
+| Short description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Mandatory.
+| Long description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Optional.
 
-Args:
-    input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top.
-    input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd.
-    output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip.
+Args:        
+    input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top (edam:format_3881).
+    input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd (edam:format_3878).
+    output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip (edam:format_3987).
     properties (dic):
         * **boolean_property** (*bool*) - (True) Example of boolean property.
         * **executable_binary_property** (*str*) - ("zip") Example of executable binary property.
         * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
         * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+
+Examples:
+    This is a use example of how to use the building block from Python::
+
+        from biobb_template.template.template import template
+
+        prop = { 
+            'boolean_property': True 
+        }
+        template(input_file_path1='/path/to/myTopology.top',
+                output_file_path='/path/to/newCompressedFile.zip',
+                input_file_path2='/path/to/mytrajectory.dcd',
+                properties=prop)
+
+Info:
+    * wrapped_software:
+        * name: Zip
+        * version: >=3.0
+        * license: BSD 3-Clause
+    * ontology:
+        * name: EDAM
+        * schema: http://edamontology.org/EDAM.owl
+
 """
 ```
+
+The docstrings syntax is broadly explained in the [JSON Generator help](https://github.com/bioexcel/utils_biobb/tree/master/json#docs-specifications) of the [utils_biobb](https://github.com/bioexcel/utils_biobb) repository. Following accurately this syntax, the [JSON Generator Tool](https://github.com/bioexcel/utils_biobb/blob/master/json/json_generator.py) will automatically generate the JSON Schemas of the package.
 
 All the multiline comments inside a set of triple quotes are used later as the function definition:
 
 
 ```python
-def launch(self):
-    """Launches the execution of the template module."""
+def launch(self) -> int:
+    """Execute the :class:`Template <template.template.Template>` object."""
 ```
 
 ### main() function
@@ -59,6 +86,7 @@ In the *main()* function we define the command line inputs and outputs and then 
 
 ```python
 def main():
+    """Command line execution of this building block. Please check the command line documentation."""
     parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('--config', required=False, help='Configuration file')
 
@@ -69,13 +97,14 @@ def main():
     required_args.add_argument('--output_file_path', required=True, help='Description for the output file path. Accepted formats: zip.')
 
     args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
+    args.config = args.config or "{}"
+    properties = settings.ConfReader(config=args.config).get_prop_dic()
 
     # 11. Adapt to match Class constructor (step 2)
     # Specific call of each building block
-    Template(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, 
+    Template(input_file_path1=args.input_file_path1, 
              output_file_path=args.output_file_path, 
+             input_file_path2=args.input_file_path2,
              properties=properties).launch()
 ```
 
@@ -86,7 +115,8 @@ In the *\_\_init\_\_()* function initialises the **Template** class. In this fun
 
 ```python
 # 2. Adapt input and output file paths as required. Include all files, even optional ones
-def __init__(self, input_file_path1, input_file_path2, output_file_path, properties, **kwargs):
+def __init__(self, input_file_path1, output_file_path, 
+            input_file_path2 = None, properties = None, **kwargs) -> None:
     properties = properties or {}
 
     # 2.1 Modify to match constructor parameters
@@ -100,9 +130,9 @@ def __init__(self, input_file_path1, input_file_path2, output_file_path, propert
     # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
-    self.properties = properties
     self.boolean_property = properties.get('boolean_property', True)
     self.executable_binary_property = properties.get('executable_binary_property', 'zip')
+    self.properties = properties
 
     # Properties common in all BB
     self.can_write_console_log = properties.get('can_write_console_log', True)
@@ -124,8 +154,8 @@ Decorator used for wrapping the log.
 
 ```python
 @launchlogger
-def launch(self):
-    """Launches the execution of the template module."""
+def launch(self) -> int:
+    """Execute the :class:`Template <template.template.Template>` object."""
 ```
 
 #### Loggers definition
@@ -166,7 +196,7 @@ Creation of a temporary folder and copy the required input file inside it.
 
 
 ```python
-# Creating temporary folder
+ """Launches the execution of the template module."""# Creating temporary folder
 self.tmp_folder = fu.create_unique_dir()
 fu.log('Creating %s temporary folder' % self.tmp_folder, out_log)
 
@@ -230,6 +260,22 @@ if self.remove_tmp:
 return returncode
 ```
 
+### template() function
+
+In the function *template()* we call the launch() function of the class Template. It will be used for external calls to the Template class such as Jupyter Notebooks and some adapters.
+
+
+```python
+def template(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> None:
+"""Create :class:`Template <template.template.Template>` class and
+execute the :meth:`launch() <template.template.Template.launch>` method."""
+
+return Template(input_file_path1=input_file_path1, 
+                output_file_path=output_file_path,
+                input_file_path2=input_file_path2,
+                properties=properties, **kwargs).launch()
+```
+
 ## TemplateContainer class
 
 Structure description for the **TemplateContainer** class of the *biobb_template/biobb_template/template/template_container.py* file. The complete source code is available in the [biobb_template repository](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py).
@@ -249,20 +295,23 @@ from biobb_common.command_wrapper import cmd_wrapper
 
 Libraries used for the execution of the **TemplateContainer** class.
 
-### Comments
+### Docstrings
 
-The automatic documentation generation system through [**sphinx**](https://www.sphinx-doc.org/en/master/) is explained in detail in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html).
+The automatic documentation generation system through [**sphinx**](https://www.sphinx-doc.org/en/master/) is explained in detail in the [Documentation section](https://biobb-documentation.readthedocs.io/en/latest/documentation.html#formats-in-code-comments).
 
 In the first line of the Template class we define all the arguments explained in the [Arguments](https://biobb-documentation.readthedocs.io/en/latest/arguments.html) section inside a set of triple quotes:
 
 
 ```python
-"""Description for the template container (http://templatedocumentation.org) module.
+"""
+| biobb_template TemplateContainer
+| Short description for the `template container <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Mandatory.
+| Long description for the `template container <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Optional.
 
 Args:
-    input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top.
-    input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd.
-    output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip.
+    input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top (edam:format_3881).
+    input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd (edam:format_3878).
+    output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip (edam:format_3987).
     properties (dic):
         * **boolean_property** (*bool*) - (True) Example of boolean property.
         * **executable_binary_property** (*str*) - ("zip") Example of executable binary property.
@@ -274,15 +323,43 @@ Args:
         * **container_working_dir** (*str*) - (None) Container working directory definition.
         * **container_user_id** (*str*) - (None) Container user_id definition.
         * **container_shell_path** (*str*) - ('/bin/bash') Path to default shell inside the container.
+
+Examples:
+    This is a use example of how to use the building block from Python::
+
+        from biobb_template.template.template_container import template_container
+
+        prop = { 
+            'boolean_property': True,
+            'container_path': 'docker',
+            'container_image': 'mmbirb/zip:latest',
+            'container_volume_path': '/tmp'
+        }
+        template_container(input_file_path1='/path/to/myTopology.top',
+                        output_file_path='/path/to/newCompressedFile.zip',
+                        input_file_path2='/path/to/mytrajectory.dcd',
+                        properties=prop)
+
+Info:
+    * wrapped_software:
+        * name: Zip
+        * version: >=3.0
+        * license: BSD 3-Clause
+    * ontology:
+        * name: EDAM
+        * schema: http://edamontology.org/EDAM.owl
+
 """
 ```
+
+The docstrings syntax is broadly explained in the [JSON Generator help](https://github.com/bioexcel/utils_biobb/tree/master/json#docs-specifications) of the [utils_biobb](https://github.com/bioexcel/utils_biobb) repository. Following accurately this syntax, the [JSON Generator Tool](https://github.com/bioexcel/utils_biobb/blob/master/json/json_generator.py) will automatically generate the JSON Schemas of the package.
 
 All the multiline comments inside a set of triple quotes are used later as the function definition:
 
 
 ```python
-def launch(self):
-    """Launches the execution of the template_container module."""
+def launch(self) -> int:
+    """Execute the :class:`TemplateContainer <template.template_container.TemplateContainer>` object."""
 ```
 
 ### main() function
@@ -292,7 +369,8 @@ In the *main()* function we define the command line inputs and outputs and then 
 
 ```python
 def main():
-    parser = argparse.ArgumentParser(description='Description for the template module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
+    """Command line execution of this building block. Please check the command line documentation."""
+    parser = argparse.ArgumentParser(description='Description for the template container module.', formatter_class=lambda prog: argparse.RawTextHelpFormatter(prog, width=99999))
     parser.add_argument('--config', required=False, help='Configuration file')
 
     # 11. Include specific args of each building block following the examples. They should match step 2
@@ -302,13 +380,14 @@ def main():
     required_args.add_argument('--output_file_path', required=True, help='Description for the output file path. Accepted formats: zip.')
 
     args = parser.parse_args()
-    config = args.config if args.config else None
-    properties = settings.ConfReader(config=config).get_prop_dic()
+    args.config = args.config or "{}"
+    properties = settings.ConfReader(config=args.config).get_prop_dic()
 
     # 12. Adapt to match Class constructor (step 2)
     # Specific call of each building block
-    TemplateContainer(input_file_path1=args.input_file_path1, input_file_path2=args.input_file_path2, 
+    TemplateContainer(input_file_path1=args.input_file_path1, 
                       output_file_path=args.output_file_path, 
+                      input_file_path2=args.input_file_path2, 
                       properties=properties).launch()
 ```
 
@@ -319,7 +398,8 @@ In the *\_\_init\_\_()* function initialises the **TemplateContainer** class. In
 
 ```python
 # 2. Adapt input and output file paths as required. Include all files, even optional ones
-def __init__(self, input_file_path1, input_file_path2, output_file_path, properties, **kwargs):
+def __init__(self, input_file_path1, output_file_path, 
+            input_file_path2 = None, properties = None, **kwargs) -> None:
     properties = properties or {}
 
     # 2.1 Modify to match constructor parameters
@@ -333,9 +413,9 @@ def __init__(self, input_file_path1, input_file_path2, output_file_path, propert
     # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
-    self.properties = properties
     self.boolean_property = properties.get('boolean_property', True)
     self.executable_binary_property = properties.get('executable_binary_property', 'zip')
+    self.properties = properties
 
     # container Specific
     self.container_path = properties.get('container_path')
@@ -365,8 +445,8 @@ Decorator used for wrapping the log.
 
 ```python
 @launchlogger
-def launch(self):
-    """Launches the execution of the template_container module."""
+def launch(self) -> int:
+    """Execute the :class:`TemplateContainer <template.template_container.TemplateContainer>` object."""
 ```
 
 #### Loggers definition
@@ -484,4 +564,20 @@ if self.remove_tmp and container_io_dict.get('unique_dir'):
     fu.log('Removed: %s' % str(container_io_dict.get('unique_dir')), out_log)
 
 return returncode
+```
+
+### template_container() function
+
+In the function *template_container()* we call the launch() function of the class TemplateContainer. It will be used for external calls to the Template class such as Jupyter Notebooks and some adapters.
+
+
+```python
+def template_container(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> None:
+"""Create :class:`TemplateContainer <template.template_container.TemplateContainer>` class and
+execute the :meth:`launch() <template.template_container.TemplateContainer.launch>` method."""
+
+return TemplateContainer(input_file_path1=input_file_path1, 
+                        output_file_path=output_file_path,
+                        input_file_path2=input_file_path2,
+                        properties=properties, **kwargs).launch()
 ```

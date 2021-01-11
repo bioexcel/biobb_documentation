@@ -45,6 +45,8 @@ __all__ = ["template"]
 
 ### adapters folder
 
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
+
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/adapters](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/adapters)
 
 This folder contains templates' adapters to use the **BioBBs** with several workflow managers. More examples of **BioBB** adapters can be found at [https://github.com/bioexcel/biobb_adapters/](https://github.com/bioexcel/biobb_adapters/).
@@ -83,6 +85,8 @@ More information in the [JSON Schemas section](https://biobb-documentation.readt
 
 ### notebooks folder
 
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
+
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/notebooks](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/notebooks)
 
 This folder contains a template with examples of the execution of *biobb_template* tools in [Jupyter Notebook](https://jupyter.org/).
@@ -111,15 +115,15 @@ __all__ = ["template", "template_container"]
 
 Example with all the code needed to generate a common **BioExcel building block**. In this case, the tool to wrap is [zip](http://infozip.sourceforge.net/).
 
-More information about the structure of this file can be found in the [Template section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#template).
+More information about the structure of this file can be found in the [Template section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#template-class).
 
 #### template_container.py
 
 [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py)
 
-Example with all the code needed to generate a **BioExcel building block** executing the wrapped tool through a container. In this case, the tool to wrap is [zip](http://infozip.sourceforge.net/) and two containers are provided: [Docker Hub](https://hub.docker.com/r/mmbirb/zip) and [Singularity Hub](https://singularity-hub.org/) (type `singularity pull --name zip.sif shub://bioexcel/zip_container` for installing it in your computer).
+Example with all the code needed to generate a **BioExcel building block** executing the wrapped tool through a container. In this case, the tool to wrap is [zip](http://infozip.sourceforge.net/) and two containers are provided: [Docker Hub](https://hub.docker.com/r/mmbirb/zip) and [Singularity Hub](https://singularity-hub.org/) (type `singularity pull --name zip.sif shub://bioexcel/zip_container` for installing it in your computer in *.sif* format or `singularity pull shub://bioexcel/zip_container` for installing it in your computer in *.simg* format).
 
-More information about the structure of this file can be found in the [TemplateContainer section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#templatecontainer).
+More information about the structure of this file can be found in the [TemplateContainer section](https://biobb-documentation.readthedocs.io/en/latest/python_structure.html#templatecontainer-class).
 
 ### test folder
 
@@ -127,9 +131,11 @@ More information about the structure of this file can be found in the [TemplateC
 
 In this folder there are all the needed files for the unittests: data files, reference files, python tests and configuration file.
 
-More information about the files structure of this folder and the execution of tests can be found in the [Unittests secion](https://biobb-documentation.readthedocs.io/en/latest/execution.html#unittests).
+More information about the files structure of this folder and the execution of tests can be found in the [Unittests secion](https://biobb-documentation.readthedocs.io/en/latest/unittests.html).
 
 ## conda_env
+
+> Take into account that this folder is not standard for a biobb. Before add your biobb to a new Git repository is strongly recommended to add it to the **.gitignore** file as explained in [this section](#.gitignore)
 
 [https://github.com/bioexcel/biobb_template/tree/master/conda_env](https://github.com/bioexcel/biobb_template/tree/master/conda_env)
 
@@ -157,7 +163,7 @@ channels:
   - bioconda
 dependencies:
   - python
-  - biobb_common==2.0.1
+  - biobb_common>=3.5.1
   - nb_conda_kernels
   - nose
   - zip
@@ -167,7 +173,7 @@ dependencies:
 In this YAML file we find all the pakcages that will be installed in our conda environment:
 
 * **python**: Last available version of python in anaconda.
-* **biobb_common**: BioBB library with all the necessary functions for developing **BioExcel Building Blocks**.
+* **biobb_common**: BioBB library with all the necessary common functions for developing **BioExcel Building Blocks**.
 * **nb_conda_kernels**: This extension enables a Jupyter Notebook application in one conda environment to access kernels for several languages found in other environments.
 * **nose**: Unittest python library.
 * **zip**: Software that will be wrapped in this *biobb_template* examples
@@ -181,11 +187,19 @@ In this YAML file we find all the pakcages that will be installed in our conda e
 
 A **.gitignore** file specifies intentionally untracked files that Git should ignore. 
 
+The biobb_template includes some folders not standard for a biobb, such as **biobb_template/adapters/**, **biobb_template/notebooks/** or **conda_env/**. For the sake of having a pure biobb structure, you should uncomment the three last lines of the .gitignore file before creating a new git repository:
+
+```console
+biobb_template/adapters
+biobb_template/notebooks
+conda_env
+```
+
 ### LICENSE
 
 [https://github.com/bioexcel/biobb_template/blob/master/LICENSE](https://github.com/bioexcel/biobb_template/blob/master/LICENSE)
 
-License for the package, usually **[Apache License 2.0](https://github.com/bioexcel/biobb_documentation/blob/master/LICENSE)** 
+License for the package, usually **[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)** 
 
 ### README.md
 
@@ -206,7 +220,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_template",
-    version="1.0.0",
+    version="2.0.0",
     author="Biobb developers",
     author_email="your@email.com",
     description="Biobb_template is a complete code template to promote and facilitate the creation of new Biobbs by the community.",
@@ -219,11 +233,11 @@ setuptools.setup(
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['adapters', 'docs', 'test']),
-    install_requires=['biobb_common>=2.0.1'],
-    python_requires='==3.6.*',
+    install_requires=['biobb_common>=3.5.1'],
+    python_requires='==3.7.*',
     classifiers=(
         "Development Status :: 3 - Alpha",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",

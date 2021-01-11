@@ -57,10 +57,10 @@ Properties can also be passed to the Python class as a **Python dictionary** dir
 prop = {
     "boolean_property": False
 }
-Template(input_file_path1=input1, 
-         input_file_path2=input2, 
+template(input_file_path1=input1, 
          output_file_path=output, 
-         properties=prop).launch()
+         input_file_path2=input2, 
+         properties=prop)
 ```
 
 In the *biobb_template* example there are two wrappers:

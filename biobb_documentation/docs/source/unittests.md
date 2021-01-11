@@ -13,7 +13,11 @@ Opening the *test* folder in *biobb_template* shows us the next files structure:
 * data/
     * config/
         * config_template.json
+        * config_template.yml
         * config_template_container.json
+        * config_template_container.yml
+        * config_template_singularity.json
+        * config_template_singularity.yml
     * template/
         * topology.top
         * trajectory.dcd
@@ -38,7 +42,7 @@ In this folder we find two subfolders:
 
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/test/data/config](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/test/data/config)
 
-These config **JSON files** are automatically generated as explained in the [JSON Schemas section](https://biobb-documentation.readthedocs.io/en/latest/schemas.html#tools-json-schemas). Its utility is mainly for the [BioBB REST API](https://mmb.irbbarcelona.org/biobb-api/) purposes. They are generated after parsing the *conf.yml* file explained below in this same section.
+These config **JSON and YAML files** are automatically generated as explained in the [JSON Schemas section](https://biobb-documentation.readthedocs.io/en/latest/schemas.html#tools-json-schemas). Its utility is mainly for the [BioBB REST API](https://mmb.irbbarcelona.org/biobb-api/) purposes and for the automatic generation of the [Command Line Documentation](https://biobb-documentation.readthedocs.io/en/latest/documentation.html#command-line-documentation). They are generated after parsing the *conf.yml* file explained below in this same section.
 
 Example of [config_template.json](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/test/data/config/config_template.json):
 
@@ -50,6 +54,14 @@ Example of [config_template.json](https://github.com/bioexcel/biobb_template/blo
         "remove_tmp": true
     }
 }
+```
+
+Example of [config_template.yml](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/test/data/config/config_template.yml):
+
+```yml
+properties:
+  boolean_property: false
+  remove_tmp: true
 ```
 
 #### template folder
@@ -182,10 +194,10 @@ template_singularity:
     ref_output_file_path: file:test_reference_dir/template/output.container.zip
   properties:
     boolean_property: false
-    remove_tmp: true
+    remove_tmp: false
     executable_binary_property: /opt/conda/bin/zip
     container_path: singularity
-    container_image: zip.sif
+    container_image: bioexcel-zip_container-master-latest.simg
     container_volume_path: /tmp
 ```
 

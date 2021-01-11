@@ -6,7 +6,7 @@
 Documentation for the creation of a new **BioExcel building block** from scratch using as a base the [biobb_template](https://github.com/bioexcel/biobb_template).
 
 ### Version
-v1.0.0 2020.1
+v2.0.0 2020.4
 
 ### Documentation
 
