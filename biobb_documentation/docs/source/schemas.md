@@ -117,6 +117,8 @@ Every tool has its own **JSON Schema** with the next structure for the Template 
 }
 ```
 
+#### JSON Schema Generator
+
 Although it's not difficult to create a **JSON Schema** by your own, we provide a tool for generating them automatically:
 
 [https://github.com/bioexcel/utils_biobb/tree/master/json](https://github.com/bioexcel/utils_biobb/tree/master/json)
@@ -128,6 +130,14 @@ Additionally, in the **utils_biobb** package there is another script also genera
 [https://github.com/bioexcel/utils_biobb/tree/master/configs](https://github.com/bioexcel/utils_biobb/tree/master/configs)
 
 The script will generate two config files (jSON and YAML formats) for each module with *properties* defined in its parameters. More information about these configuration files in the [Execution section](https://biobb-documentation.readthedocs.io/en/latest/execution.html#execution).
+
+#### JSON Schema Validator
+
+In order to validate the JSON Schema generated with the [JSON Generator Tool](https://github.com/bioexcel/utils_biobb/blob/master/json/json_generator.py), a [**JSON Validator Tool**](https://github.com/bioexcel/utils_biobb/blob/master/json/json_validator.py) can be found in the same **json** module of the **utils_biobb** package. [Click here](https://github.com/bioexcel/utils_biobb/tree/master/json#json-validator) to follow the execution instructions of this tool.
+
+This is the schema generated for the validation of the BioBB JSON Schemas:
+
+[https://github.com/bioexcel/utils_biobb/blob/master/json/schema/master_schema.json](https://github.com/bioexcel/utils_biobb/blob/master/json/schema/master_schema.json)
 
 ### Package JSON
 

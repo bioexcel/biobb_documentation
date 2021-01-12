@@ -35,12 +35,17 @@ Properties can be passed to a **BioBB** in different ways:
 
 Creating a **config file** that will be passed to the Python class as an **input file path** in a command line call. Accepted formats:
 * **YAML**
-* **JSON**
- 
+
 ```Shell
 template --config template.yml --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
-    
+
+* **JSON**
+ 
+```Shell
+template --config template.json --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
+```
+
 #### As a string
 
 In case we launch a **BioBB** through command line, we can also pass the properties in a string in **JSON format**.

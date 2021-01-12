@@ -4,7 +4,7 @@
 
 ### Binary path configuration
 
-First off, we recommend to configure binary paths in your environment in order to easy the command line execution. For doing that, please follow the next steps:
+First off, we recommend to configure binary paths in your environment in order to ease the command line execution. For doing that, please follow the next steps:
 
 #### Create binary folder
 

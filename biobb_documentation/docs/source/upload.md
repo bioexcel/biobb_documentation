@@ -108,7 +108,7 @@ In the *biobb_template* example:
 
 ##### meta.yaml file
 
-In this file we describe 
+In this file we assign the build number and the requirements for the *biobb_template* package:
 
 ```yaml
 {% set name = "biobb_template" %}
@@ -158,9 +158,11 @@ extra:
   recipe-maintainers: ''
 ```
 
-Where **VERSION** and **HASH** must be changed by the **version** and **sha256** values of the */home/user/REPOSITORY/meta.yaml* file created at the beginning of this folder.
+Where **VERSION** and **HASH** must be changed by the **version** and **sha256** values of the */home/user/REPOSITORY/meta.yaml* file created in the [Create recipe](#create-recipe) section.
 
 ##### post-link.sh file
+
+> The BioBB development team strongly advise against use custom conda dependencies not included in the anaconda official channels (conda and conda-forge). In case of using only dependencies included in the anaconda official channels you can skip this section.
 
 Although this file is not recommended because it can cause some issues in the conda installation, sometimes it's necessary for installing packages that are not in the official conda channels. This packages are installed at the end of the **Bioconda** package installation:
 
@@ -172,6 +174,8 @@ conda install -y  -c CHANNEL TOOL==VERSION
 ```
 
 ### Create Docker container
+
+> The BioBB development team strongly advise against use custom conda dependencies not included in the anaconda official channels (conda and conda-forge). In case of using only dependencies included in the anaconda official channels you can skip this section.
 
 If you didn't use a *post-link.sh* file in the previous step, this process is automatic. Otherwise, you should write a Docker recipe and upload it to Docker Hub.
 
