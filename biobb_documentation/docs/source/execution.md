@@ -41,7 +41,7 @@ mkdir conda
 cd conda/
 mkdir activate.d
 cd activate.d/
-printf '#!/usr/bin/env bash\n\nexport BIOBB_OLD_PATH=$PATH\nexport PATH=/home/user_name/projects/bin:$PATH' > biobb_template.sh
+printf '#!/usr/bin/env bash\n\nexport BIOBB_OLD_PATH=$PATH\nexport PATH=/home/user_name/projects/bin:$PATH\n' > biobb_template.sh
 ```
 
 #### Create conda deactivate actions
@@ -52,7 +52,7 @@ Remember to change the */[anaconda-path]* and the */home/user_name/projects/* pa
 cd /[anaconda-path]/envs/biobb_template/etc/conda
 mkdir deactivate.d
 cd deactivate.d/
-printf '#!/usr/bin/env bash\n\nexport PATH=$BIOBB_OLD_PATH' > biobb_template.sh
+printf '#!/usr/bin/env bash\n\nexport PATH=$BIOBB_OLD_PATH\n' > biobb_template.sh
 ```
 
 #### Restart environment
