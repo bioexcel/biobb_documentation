@@ -159,7 +159,7 @@ As you can see below, you need to provide a general description, the addresses t
     "conda": "",
     "docker": "",
     "singularity": "",
-    "version": "2.0.0",
+    "version": "4.0.0",
     "tools" : [
         {
             "block" : "Template", 
@@ -177,12 +177,12 @@ As you can see below, you need to provide a general description, the addresses t
         }
     ],
     "dep_pypi" : [
-        "install_requires=['biobb_common==3.5.1']", 
-        "python_requires='==3.7.*'"
+        "install_requires=['biobb_common==3.8.1']", 
+        "python_requires='>=3.7'"
     ], 
     "dep_conda" : [
-        "python ==3.7.*", 
-        "biobb_common ==3.5.1"
+        "python >=3.7", 
+        "biobb_common ==3.8.1"
     ],
     "keywords" : [
         "template", 
