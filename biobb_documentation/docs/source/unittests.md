@@ -2,7 +2,7 @@
 
 In computer programming, **unit testing** is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are **tested** to determine whether they are fit for use.
 
-The **BioBB unittests** are performed using [Nose](https://nose.readthedocs.io/en/latest/index.html), that comes installed in the conda environment generated in the *biobb_template*.
+The **BioBB unittests** are performed using [pytest](https://docs.pytest.org/en/7.1.x/), that comes installed in the conda environment generated in the *biobb_template*.
 
 ## Files structure
 
@@ -95,54 +95,54 @@ Example of [test_template.py](https://github.com/bioexcel/biobb_template/blob/ma
 
 ```python
 from biobb_common.tools import test_fixtures as fx
-from biobb_template.template.template import Template
+from biobb_template.template.template import template
 
 class TestTemplate():
-    def setUp(self):
+    def setup_class(self):
         fx.test_setup(self, 'template')
 
-    def tearDown(self):
+    def teardown_class(self):
         fx.test_teardown(self)
         pass
 
     def test_template(self):
-        returncode= Template(properties=self.properties, **self.paths).launch()
+        returncode= template(properties=self.properties, **self.paths)
         assert fx.not_empty(self.paths['output_file_path'])
         assert fx.equal(self.paths['output_file_path'], self.paths['ref_output_file_path'])
         assert fx.exe_success(returncode)
 ```
 
-Example of [test_template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py), that performs the unittest for the [template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py) code, in this case one test for **docker container** and another for **singularity container**:
+Example of [test_template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/test/unitests/test_template/test_template_container.py), that performs the unittest for the [template_container.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/template/template_container.py) code, in this case one test for **docker container** and another for **singularity container**:
 
 
 ```python
 from biobb_common.tools import test_fixtures as fx
-from biobb_template.template.template_container import TemplateContainer
+from biobb_template.template.template_container import template_container
 
 class TestTemplateDocker():
-    def setUp(self):
+    def setup_class(self):
         fx.test_setup(self, 'template_container')
 
-    def tearDown(self):
+    def teardown_class(self):
         fx.test_teardown(self)
         pass
 
     def test_template_docker(self):
-        returncode= TemplateContainer(properties=self.properties, **self.paths).launch()
+        returncode= template_container(properties=self.properties, **self.paths)
         assert fx.not_empty(self.paths['output_file_path'])
         assert fx.equal(self.paths['output_file_path'], self.paths['ref_output_file_path'])
         assert fx.exe_success(returncode)
 
 class TestTemplateSingularity():
-    def setUp(self):
+    def setup_class(self):
         fx.test_setup(self, 'template_singularity')
 
-    def tearDown(self):
+    def teardown_class(self):
         fx.test_teardown(self)
         pass
 
     def test_template_singularity(self):
-        returncode= TemplateContainer(properties=self.properties, **self.paths).launch()
+        returncode= template_container(properties=self.properties, **self.paths)
         assert fx.not_empty(self.paths['output_file_path'])
         assert fx.equal(self.paths['output_file_path'], self.paths['ref_output_file_path'])
         assert fx.exe_success(returncode)
@@ -195,7 +195,7 @@ template_singularity:
   properties:
     boolean_property: false
     remove_tmp: false
-    executable_binary_property: /opt/conda/bin/zip
+    binary_path: /opt/conda/bin/zip
     container_path: singularity
     container_image: bioexcel-zip_container-master-latest.simg
     container_volume_path: /tmp
@@ -203,16 +203,16 @@ template_singularity:
 
 ## Execution
 
-Finally, in order to execute the unittests, you only need to call the Python test files through [Nose](https://nose.readthedocs.io/en/latest/index.html):
+Finally, in order to execute the unittests, you only need to call the Python test files through [pytest](https://docs.pytest.org/en/7.1.x/):
 
 ### Template
 
 ```Shell
-nosetests -s biobb_template/biobb_template/test/unitests/test_template/test_template.py
+pytest -s biobb_template/biobb_template/test/unitests/test_template/test_template.py
 ```
 
 ### Template Container
 
 ```Shell
-nosetests -s biobb_template/biobb_template/test/unitests/test_template/test_template_container.py
+pytest -s biobb_template/biobb_template/test/unitests/test_template/test_template_container.py
 ```

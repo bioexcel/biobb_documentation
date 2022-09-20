@@ -92,7 +92,7 @@ Every tool has its own **JSON Schema** with the next structure for the Template 
                     "wf_prop": false,
                     "description": "Example of boolean property."
                 },
-                "executable_binary_property": {
+                "binary_path": {
                     "type": "string",
                     "default": "zip",
                     "wf_prop": false,
@@ -121,23 +121,23 @@ Every tool has its own **JSON Schema** with the next structure for the Template 
 
 Although it's not difficult to create a **JSON Schema** by your own, we provide a tool for generating them automatically:
 
-[https://github.com/bioexcel/utils_biobb/tree/master/json](https://github.com/bioexcel/utils_biobb/tree/master/json)
+[https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json)
 
-Following the instructions of this [**json_generator**](https://github.com/bioexcel/utils_biobb/tree/master/json) tool, especially those referred to the [**files structure**](https://github.com/bioexcel/utils_biobb/tree/master/json#files-structure) and to the [**docs specifications**](https://github.com/bioexcel/utils_biobb/tree/master/json#docs-specifications), the tool will generate these **JSON Schema** files for you.
+Following the instructions of this [**json_generator**](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json#json-generator) tool, especially those referred to the [**files structure**](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json#files-structure) and to the [**docs specifications**](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json#docs-specifications), the tool will generate these **JSON Schema** files for you.
 
 Additionally, in the **utils_biobb** package there is another script also generates the configuration files from the data taken from the *biobb_template/biobb_template/test/conf.yml* file:
 
-[https://github.com/bioexcel/utils_biobb/tree/master/configs](https://github.com/bioexcel/utils_biobb/tree/master/configs)
+[https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/configs](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/configs)
 
 The script will generate two config files (jSON and YAML formats) for each module with *properties* defined in its parameters. More information about these configuration files in the [Execution section](https://biobb-documentation.readthedocs.io/en/latest/execution.html#execution).
 
 #### JSON Schema Validator
 
-In order to validate the JSON Schema generated with the [JSON Generator Tool](https://github.com/bioexcel/utils_biobb/blob/master/json/json_generator.py), a [**JSON Validator Tool**](https://github.com/bioexcel/utils_biobb/blob/master/json/json_validator.py) can be found in the same **json** module of the **utils_biobb** package. [Click here](https://github.com/bioexcel/utils_biobb/tree/master/json#json-validator) to follow the execution instructions of this tool.
+In order to validate the JSON Schema generated with the [JSON Generator Tool](https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/json/json_generator.py), a [**JSON Validator Tool**](https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/json/json_validator.py) can be found in the same **json** module of the **utils_biobb** package. [Click here](https://github.com/bioexcel/utils_biobb/tree/master/utils_biobb/json#json-validator) to follow the execution instructions of this tool.
 
 This is the schema generated for the validation of the BioBB JSON Schemas:
 
-[https://github.com/bioexcel/utils_biobb/blob/master/json/schema/master_schema.json](https://github.com/bioexcel/utils_biobb/blob/master/json/schema/master_schema.json)
+[https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/json/schema/master_schema.json](https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/json/schema/master_schema.json)
 
 ### Package JSON
 
@@ -229,7 +229,7 @@ The **BioBB** HTML schema is in the *docs/source/* folder. The basic code is the
   "applicationSubCategory": "http://www.edamontology.org/topic_3892",
   "citation": "https://www.nature.com/articles/s41597-019-0177-4",
   "license": "https://www.apache.org/licenses/LICENSE-2.0",
-  "softwareVersion": "2.0.0",
+  "softwareVersion": "4.0.0",
   "applicationSuite": "BioBB BioExcel Building Blocks",
   "codeRepository": "https://github.com/bioexcel/biobb_template",
   "isAccessibleForFree": "True",

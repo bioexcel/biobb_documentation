@@ -21,6 +21,7 @@ Taking a look to the **biobb_template** files structure, we will find something 
     * biobb_template.pth
     * environment.yml
 * .gitignore
+* .readthedocs.yaml
 * LICENSE
 * README.md
 * setup.py
@@ -35,12 +36,13 @@ This folder contains the whole project.
 
 [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/\_\_init\_\_.py](https://github.com/bioexcel/biobb_template/blob/master/biobb_template/__init__.py)
 
-Files named **\_\_init\_\_.py** are used to mark directories on disk as Python package directories. In this first level we define the package name (*biobb_template*) and all the modules contained in this package, only one in this example (*template*):
+Files named **\_\_init\_\_.py** are used to mark directories on disk as Python package directories. In this first level we define the package name (*biobb_template*) all the modules contained in this package -only one in this example (*template*)- and the package version:
 
 
 ```python
 name = "biobb_template"
 __all__ = ["template"]
+__version__ = "4.0.0"
 ```
 
 ### adapters folder
@@ -163,9 +165,9 @@ channels:
   - bioconda
 dependencies:
   - python
-  - biobb_common>=3.5.1
+  - biobb_common>=3.8.1
   - nb_conda_kernels
-  - nose
+  - pytest
   - zip
   - conda
 ```
@@ -175,7 +177,7 @@ In this YAML file we find all the pakcages that will be installed in our conda e
 * **python**: Last available version of python in anaconda.
 * **biobb_common**: BioBB library with all the necessary common functions for developing **BioExcel Building Blocks**.
 * **nb_conda_kernels**: This extension enables a Jupyter Notebook application in one conda environment to access kernels for several languages found in other environments.
-* **nose**: Unittest python library.
+* **pytest**: Unittest python library.
 * **zip**: Software that will be wrapped in this *biobb_template* examples
 * **conda**: Installs conda client for easy the different conda instructions execution.
 
@@ -194,6 +196,12 @@ biobb_template/adapters
 biobb_template/notebooks
 conda_env
 ```
+
+### .readthedocs.yaml
+
+[https://github.com/bioexcel/biobb_template/blob/master/.readthedocs.yaml](https://github.com/bioexcel/biobb_template/blob/master/.readthedocs.yaml)
+
+A **.readthedocs.yaml** file configures your documentation builds with [Read the Docs](https://readthedocs.org/)
 
 ### LICENSE
 
@@ -220,7 +228,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_template",
-    version="2.0.0",
+    version="4.0.0",
     author="Biobb developers",
     author_email="your@email.com",
     description="Biobb_template is a complete code template to promote and facilitate the creation of new Biobbs by the community.",
@@ -233,8 +241,8 @@ setuptools.setup(
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['adapters', 'docs', 'test']),
-    install_requires=['biobb_common>=3.5.1'],
-    python_requires='==3.7.*',
+    install_requires=['biobb_common>=3.8.1'],
+    python_requires='>=3.7',
     classifiers=(
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3.7",

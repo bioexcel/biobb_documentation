@@ -80,7 +80,7 @@ The properties for both examples are different since the execution of tools thro
 Below there is the dictionary of properties for the **template.py** tool:
 
 * **boolean_property** (*bool*) - (True) Example of boolean property.
-* **executable_binary_property** (*str*) - ("zip") Example of executable binary property.
+* **binary_path** (*str*) - ("zip") Example of executable binary property.
 * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
 * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 
@@ -89,7 +89,7 @@ There are two types of properties in this template:
 #### Specific properties for this BioBB
 
 * **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*). In the *biobb_template* example, this property enables / disables the verbose (-v) operation.
-* **executable_binary_property** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
+* **binary_path** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
 
 #### Properties common in all BioBB
 
@@ -108,7 +108,7 @@ As we can see, not all of these properties are defined in the **template.py** to
 Below there is the dictionary of properties for the **template_container.py** tool:
 
 * **boolean_property** (*bool*) - (True) Example of boolean property.
-* **executable_binary_property** (*str*) - ("zip") Example of executable binary property.
+* **binary_path** (*str*) - ("zip") Example of executable binary property.
 * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
 * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
 * **container_path** (*str*) - (None) Container path definition.
@@ -123,7 +123,7 @@ There are three types of properties in this template:
 #### Specific properties for this BioBB
 
 * **boolean_property** (*bool*): is a property defined specifically for this **BioBB** as an example of specific property. There are several data types that can be used: **boolean** (*bool*), **integer** (*int*), **float** (*float*), **string** (*str*) and **dictionary** (*dic*). In the *biobb_template* example, this property enables / disables the verbose (-v) operation.
-* **executable_binary_property** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
+* **binary_path** (*str*): is used to define the path of the binary wrapped by the **BioBB**. Usually in case the user doesn't want to execute the default binary provided by the environment.
 
 #### Container specific properties
 

@@ -8,7 +8,7 @@ First off, please send us an email to [bioexcel.biobb@gmail.com](mailto:bioexcel
 
 Once we are in touch and you have all the permissions, you can download a **shell script** developed by our team that easies and automates all the process of generation of a new conda package:
 
-[https://github.com/bioexcel/utils_biobb/blob/master/new_version/new_conda_version.sh](https://github.com/bioexcel/utils_biobb/blob/master/new_version/new_conda_version.sh)
+[https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/new_version/new_conda_version.sh](https://github.com/bioexcel/utils_biobb/blob/master/utils_biobb/new_version/new_conda_version.sh)
 
 You just need to download it and change the variables by the values of your own computer:
 
