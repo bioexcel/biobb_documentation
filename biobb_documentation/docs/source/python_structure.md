@@ -245,7 +245,7 @@ self.tmp_files.extend([
 self.remove_tmp_files()
 ```
 
-#### Check arguments
+#### Check arguments
 Check output arguments and warn the user if some output is incorrect or not created.
 
 ```python
@@ -523,7 +523,7 @@ self.tmp_files.extend([
 self.remove_tmp_files()
 ```
 
-#### Check arguments
+#### Check arguments
 Check output arguments and warn the user if some output is incorrect or not created.
 
 ```python
