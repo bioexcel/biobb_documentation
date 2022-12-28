@@ -159,7 +159,7 @@ As you can see below, you need to provide a general description, the addresses t
     "conda": "",
     "docker": "",
     "singularity": "",
-    "version": "4.0.0",
+    "version": "3.9.0",
     "tools" : [
         {
             "block" : "Template", 
@@ -177,12 +177,12 @@ As you can see below, you need to provide a general description, the addresses t
         }
     ],
     "dep_pypi" : [
-        "install_requires=['biobb_common==3.8.1']", 
-        "python_requires='>=3.7'"
+        "install_requires=['biobb_common==3.9.0']", 
+        "python_requires='>=3.7,<3.10'"
     ], 
     "dep_conda" : [
-        "python >=3.7", 
-        "biobb_common ==3.8.1"
+        "python >=3.7,<3.10", 
+        "biobb_common ==3.9.0"
     ],
     "keywords" : [
         "template", 
@@ -229,7 +229,7 @@ The **BioBB** HTML schema is in the *docs/source/* folder. The basic code is the
   "applicationSubCategory": "http://www.edamontology.org/topic_3892",
   "citation": "https://www.nature.com/articles/s41597-019-0177-4",
   "license": "https://www.apache.org/licenses/LICENSE-2.0",
-  "softwareVersion": "4.0.0",
+  "softwareVersion": "3.9.0",
   "applicationSuite": "BioBB BioExcel Building Blocks",
   "codeRepository": "https://github.com/bioexcel/biobb_template",
   "isAccessibleForFree": "True",

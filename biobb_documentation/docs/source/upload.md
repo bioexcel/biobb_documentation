@@ -133,11 +133,11 @@ requirements:
   host:
     - python
     - setuptools
-    - biobb_common ==3.5.1
+    - biobb_common ==3.9.0
     - zip
   run:
     - python
-    - biobb_common ==3.5.1
+    - biobb_common ==3.9.0
     - zip
 test:
   imports:

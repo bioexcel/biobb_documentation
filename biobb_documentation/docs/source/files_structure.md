@@ -42,7 +42,7 @@ Files named **\_\_init\_\_.py** are used to mark directories on disk as Python p
 ```python
 name = "biobb_template"
 __all__ = ["template"]
-__version__ = "4.0.0"
+__version__ = "3.9.0"
 ```
 
 ### adapters folder
@@ -165,7 +165,7 @@ channels:
   - bioconda
 dependencies:
   - python
-  - biobb_common>=3.8.1
+  - biobb_common>=3.9.0
   - nb_conda_kernels
   - pytest
   - zip
@@ -228,7 +228,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_template",
-    version="4.0.0",
+    version="3.9.0",
     author="Biobb developers",
     author_email="your@email.com",
     description="Biobb_template is a complete code template to promote and facilitate the creation of new Biobbs by the community.",
@@ -241,8 +241,8 @@ setuptools.setup(
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['adapters', 'docs', 'test']),
-    install_requires=['biobb_common>=3.8.1'],
-    python_requires='>=3.7',
+    install_requires=['biobb_common>=3.9.0'],
+    python_requires='>=3.7,<3.10',
     classifiers=(
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3.7",

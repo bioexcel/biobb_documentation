@@ -61,7 +61,7 @@ As explained in the [Files structure](https://biobb-documentation.readthedocs.io
 ```python
 name = "biobb_template"
 __all__ = ["template"]
-__version__ = "4.0.0"
+__version__ = "3.9.0"
 ```
 
 * **biobb_template/biobb_template/template/\_\_init\_\_.py**: define the folder name (*template*) and all the tools contained in this folder, only two in this example (*template* and *template_container*).
