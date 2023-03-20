@@ -219,7 +219,7 @@ pytest -s biobb_template/biobb_template/test/unitests/test_template/test_templat
 
 ## GitHub Actions
 
-The unittests can be run automatically after pushing a commit to GitHub through the [**GitHub Actions**](https://github.com/features/actions) feature. The [BioExcel](https://github.com/bioexcel) official repository (that contains all the BioBB packages repositories) has been configured in order to launch testing after pushing some repository containing the [.github](https://biobb-documentation.readthedocs.io/en/latest/files_structure.html#github) folder included in the **biobb_template**.
+The unittests can be run automatically after pushing a commit to GitHub through the [**GitHub Actions**](https://github.com/features/actions) feature. The [BioExcel](https://github.com/bioexcel) official repository (that contains all the BioBB packages repositories) has been configured in order to launch testing after pushing some repository containing the [.github](https://biobb-documentation.readthedocs.io/en/latest/files_structure.html#github-folder) folder included in the **biobb_template**.
 
 In this **.github** folder there are only two YAML files:
 
