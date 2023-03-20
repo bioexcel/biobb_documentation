@@ -4,6 +4,10 @@
 
 Taking a look to the **biobb_template** files structure, we will find something like that:
 
+* .github
+    * workflows
+        * linting_and_testing.yml
+    * env.yaml
 * biobb_template/
     * \_\_init\_\_.py
     * adapters/
@@ -25,6 +29,32 @@ Taking a look to the **biobb_template** files structure, we will find something 
 * LICENSE
 * README.md
 * setup.py
+
+## .github folder
+
+[https://github.com/bioexcel/biobb_template/tree/master/.github](https://github.com/bioexcel/biobb_template/tree/master/.github)
+
+This folder contains all the files necessary for **testing** the biobb package in the GitHub repository through [**GitHub Actions**](https://github.com/features/actions).
+
+### env.yaml
+
+[https://github.com/bioexcel/biobb_template/blob/master/.github/env.yaml](https://github.com/bioexcel/biobb_template/blob/master/.github/env.yaml)
+
+File with all the dependencies needed for running the biobb package in a conda environment.
+
+### workflows folder
+
+[https://github.com/bioexcel/biobb_template/tree/master/.github/workflows](https://github.com/bioexcel/biobb_template/tree/master/.github/workflows)
+
+This folder contains the **linting_and_testing.yml** file that allows to run the tests.
+
+#### linting_and_testing.yml
+
+[https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/linting_and_testing.yml](https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/linting_and_testing.yml)
+
+This file is the workflow that runs the tests in an external Virtual Machine configured to run automatically through GitHub actions. When the developer pushes code to the repository, the workflow is launched performing linting and running the tests developed in the [Unittests](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#unittests) section.
+
+The structure of this file is explained in the [Github Actions](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#github-actions) section.
 
 ## biobb_template
 

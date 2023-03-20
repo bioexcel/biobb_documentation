@@ -216,3 +216,130 @@ pytest -s biobb_template/biobb_template/test/unitests/test_template/test_templat
 ```Shell
 pytest -s biobb_template/biobb_template/test/unitests/test_template/test_template_container.py
 ```
+
+## GitHub Actions
+
+The unittests can be run automatically after pushing a commit to GitHub through the [**GitHub Actions**](https://github.com/features/actions) feature. The [BioExcel](https://github.com/bioexcel) official repository (that contains all the BioBB packages repositories) has been configured in order to launch testing after pushing some repository containing the [.github](https://biobb-documentation.readthedocs.io/en/latest/files_structure.html#github) folder included in the **biobb_template**.
+
+In this **.github** folder there are only two YAML files:
+
+### env.yaml
+
+File with all the dependencies needed for running the biobb package in a conda environment:
+
+```yaml
+name: test_environment
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python >=3.7,<3.10
+  - biobb_common ==3.9.0
+  - zip
+```
+
+### linting_and_testing.yml
+
+This file is the workflow that runs the tests in an external Virtual Machine configured to run automatically through GitHub actions:
+
+```yaml
+name: tests
+
+on: 
+  # workflow_dispatch
+  push:
+   branches: [ master ]
+   paths-ignore:
+      - '.gitignore'
+      - '.readthedocs.yaml'
+      - 'LICENSE'
+      - 'setup.py'
+      - 'README.md'
+      - '**/docs/**'
+      - '**/json_schemas/**'
+
+jobs:
+  # Name of the Job
+  lint_and_test:
+    strategy:
+      matrix:
+        os: [self-hosted]
+        python-version: ["3.7", "3.8", "3.9"]
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - run: echo "Repository -> ${{ github.repository }}"
+      - run: echo "Branch -> ${{ github.ref }}"
+      - run: echo "Trigger event -> ${{ github.event_name }}"
+      - run: echo "Runner OS -> ${{ runner.os }}"
+
+
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: provision-with-micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: .github/env.yaml
+          extra-specs: |
+            python=${{ matrix.python-version }}
+            pytest
+            pytest-cov
+            flake8
+      
+      - name: List installed package versions
+        shell: bash -l {0}  # necessary for conda env to be active
+        run: micromamba list
+
+      - name: Lint with flake8
+        shell: bash -l {0}  # necessary for conda env to be active
+        run: |
+          # F Codes: https://flake8.pycqa.org/en/latest/user/error-codes.html
+          # E Code: https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+
+          # Workflow fails: Stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+          # Exit-zero treats all errors as warnings, workflow will not fail:
+          flake8 . --exclude=docs --ignore=C901,E226 --count --exit-zero --max-complexity=10 --max-line-length=999 --statistics
+
+      - name: Checkout biobb_common
+        uses: actions/checkout@v3
+        with:
+          repository: bioexcel/biobb_common
+          path: './biobb_common'
+
+      - name: Run tests
+        shell: bash -l {0}  # necessary for conda env to be active
+        run: |
+          # Ignoring docker and singularity tests
+          export PYTHONPATH=.:./biobb_common:$PYTHONPATH
+          # Production one
+          pytest biobb_template/test/unitests/ --cov=./ --cov-report=xml --ignore-glob=*container.py
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      
+      - name: Restore .bash_profile
+        run: cp ~/.bash_profile_orig ~/.bash_profile
+```
+
+This workflow has been configured for linting and testing all BioBB's, so the only part that must be customized is the _Run tests_ step, where the unittests explained above in this same section are run:
+
+```yaml
+- name: Run tests
+    shell: bash -l {0}  # necessary for conda env to be active
+    run: |
+        # Ignoring docker and singularity tests
+        export PYTHONPATH=.:./biobb_common:$PYTHONPATH
+        # Production one
+        pytest biobb_template/test/unitests/ --cov=./ --cov-report=xml --ignore-glob=*container.py
+```
+
+For the sake of the efficiency, the container version of the tools won't be tested.
