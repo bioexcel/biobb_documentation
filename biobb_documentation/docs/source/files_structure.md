@@ -5,7 +5,11 @@
 Taking a look to the **biobb_template** files structure, we will find something like that:
 
 * .github
+    * ISSUE_TEMPLATE
+        * bug_report.md
+        * feature_request.md
     * workflows
+        * inactive_issues.yml
         * linting_and_testing.yml
     * env.yaml
 * biobb_template/
@@ -46,15 +50,77 @@ File with all the dependencies needed for running the biobb package in a conda e
 
 [https://github.com/bioexcel/biobb_template/tree/master/.github/workflows](https://github.com/bioexcel/biobb_template/tree/master/.github/workflows)
 
-This folder contains the **linting_and_testing.yml** file that allows to run the tests.
+This folder contains the **GitHub actions workflows**.
 
 #### linting_and_testing.yml
 
 [https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/linting_and_testing.yml](https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/linting_and_testing.yml)
 
-This file is the workflow that runs the tests in an external Virtual Machine configured to run automatically through GitHub actions. When the developer pushes code to the repository, the workflow is launched performing linting and running the tests developed in the [Unittests](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#unittests) section.
+This file is the workflow that **runs the tests** in an external Virtual Machine configured to run automatically through **GitHub actions**. When the developer **pushes** code to the repository, the workflow is launched performing **linting** and running the tests developed in the [Unittests](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#unittests) section.
 
 The structure of this file is explained in the [Github Actions](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#github-actions) section.
+
+#### inactive_issues.yml
+
+[https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/inactive_issues.yml](https://github.com/bioexcel/biobb_template/blob/master/.github/workflows/inactive_issues.yml)
+
+This file checks if there are **inactive issues** and put them as **stale** if there hasn't been activity in the last 30 days or **close** them in case it has been 14 days since the issue was put as stale. This **workflow** is executed **automatically** once per day. 
+
+The structure of this file is explained in the [Github Actions](https://biobb-documentation.readthedocs.io/en/latest/unittests.html#github-actions) section.
+
+### ISSUE_TEMPLATE folder
+
+This contains the **templates for issues**.
+
+#### bug_report.md
+
+Template for opening a **new issue** related to **bugs**.
+
+```markdown
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. ubuntu]
+ - Python version: [e.g. 3.8]
+ - BioBB version [e.g. 4.0.0]
+
+**Additional context**
+Add any other context about the problem here.
+```
+
+#### feature_request.md
+
+Template for opening a **new issue** related to **feature requesting**.
+
+```markdown
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+```
 
 ## biobb_template
 
@@ -72,7 +138,7 @@ Files named **\_\_init\_\_.py** are used to mark directories on disk as Python p
 ```python
 name = "biobb_template"
 __all__ = ["template"]
-__version__ = "3.9.0"
+__version__ = "4.1.0"
 ```
 
 ### adapters folder
@@ -195,7 +261,7 @@ channels:
   - bioconda
 dependencies:
   - python
-  - biobb_common>=3.9.0
+  - biobb_common>=4.1.0
   - nb_conda_kernels
   - pytest
   - zip
@@ -258,7 +324,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="biobb_template",
-    version="3.9.0",
+    version="4.1.0",
     author="Biobb developers",
     author_email="your@email.com",
     description="Biobb_template is a complete code template to promote and facilitate the creation of new Biobbs by the community.",
@@ -267,18 +333,26 @@ setuptools.setup(
     keywords="Bioinformatics Workflows BioExcel Compatibility",
     url="https://github.com/bioexcel/biobb_template",
     project_urls={
-        "Documentation": "http://biobb_template.readthedocs.io/en/latest/",
+        "Documentation": "http://biobb-template.readthedocs.io/en/latest/",
         "Bioexcel": "https://bioexcel.eu/"
     },
     packages=setuptools.find_packages(exclude=['adapters', 'docs', 'test']),
-    install_requires=['biobb_common>=3.9.0'],
-    python_requires='>=3.7,<3.10',
+    install_requires=['biobb_common==4.1.0'],
+    python_requires='>=3.8',
+    entry_points={
+        "console_scripts": [
+            "template = biobb_template.template.template:main"
+        ]
+    },
     classifiers=(
-        "Development Status :: 3 - Alpha",
-        "Programming Language :: Python :: 3.7",
+        "Development Status :: 5 - Production/Stable",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
+        "Operating System :: Unix"
     ),
 )
 ```

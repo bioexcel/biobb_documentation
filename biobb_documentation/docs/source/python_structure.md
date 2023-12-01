@@ -14,7 +14,7 @@ import argparse
 import shutil
 from pathlib import PurePath
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
+from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 ```
@@ -111,8 +111,8 @@ def main():
 
     # 11. Adapt to match Class constructor (step 2)
     # Specific call of each building block
-    template(input_file_path1=args.input_file_path1, 
-             output_file_path=args.output_file_path, 
+    template(input_file_path1=args.input_file_path1,
+             output_file_path=args.output_file_path,
              input_file_path2=args.input_file_path2,
              properties=properties)
 ```
@@ -124,8 +124,7 @@ In the *\_\_init\_\_()* function initialises the **Template** class. In this fun
 
 ```python
 # 2. Adapt input and output file paths as required. Include all files, even optional ones
-def __init__(self, input_file_path1, output_file_path, 
-            input_file_path2 = None, properties = None, **kwargs) -> None:
+def __init__(self, input_file_path1, output_file_path, input_file_path2=None, properties=None, **kwargs) -> None:
     properties = properties or {}
 
     # 2.0 Call parent class constructor
@@ -134,12 +133,12 @@ def __init__(self, input_file_path1, output_file_path,
 
     # 2.1 Modify to match constructor parameters
     # Input/Output files
-    self.io_dict = { 
-        'in': { 'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2 }, 
-        'out': { 'output_file_path': output_file_path } 
+    self.io_dict = {
+        'in': {'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2},
+        'out': {'output_file_path': output_file_path}
     }
 
-    # 3. Include all relevant properties here as 
+    # 3. Include all relevant properties here as
     # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
@@ -173,7 +172,8 @@ If *restart* property is enabled, skip this step. This property is only used for
 
 ```python
 # 4. Setup Biobb
-if self.check_restart(): return 0
+if self.check_restart():
+    return 0
 self.stage_files()
 ```
 
@@ -184,7 +184,7 @@ Creation of a temporary folder and copy the required input file inside it.
 ```python
 # Creating temporary folder
 self.tmp_folder = fu.create_unique_dir()
-fu.log('Creating %s temporary folder' % self.tmp_folder, out_log)
+fu.log('Creating %s temporary folder' % self.tmp_folder, self.out_log)
 
 # 5. Include here all mandatory input files
 # Copy input_file_path1 to temporary folder
@@ -204,9 +204,9 @@ if self.boolean_property:
 
 # 7. Build the actual command line as a list of items (elements order will be maintained)
 self.cmd = [self.binary_path,
-       ' '.join(instructions), 
-       self.io_dict['out']['output_file_path'],
-       str(PurePath(self.tmp_folder).joinpath(PurePath(self.io_dict['in']['input_file_path1']).name))]
+            ' '.join(instructions),
+            self.io_dict['out']['output_file_path'],
+            str(PurePath(self.tmp_folder).joinpath(PurePath(self.io_dict['in']['input_file_path1']).name))]
 fu.log('Creating command line with instructions and required arguments', self.out_log, self.global_log)
 ```
 
@@ -266,11 +266,11 @@ In the function *template()* we call the launch() function of the class Template
 
 
 ```python
-def template(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> None:
+def template(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> int:
 """Create :class:`Template <template.template.Template>` class and
 execute the :meth:`launch() <template.template.Template.launch>` method."""
 
-return Template(input_file_path1=input_file_path1, 
+return Template(input_file_path1=input_file_path1,
                 output_file_path=output_file_path,
                 input_file_path2=input_file_path2,
                 properties=properties, **kwargs).launch()
@@ -286,7 +286,7 @@ Structure description for the **TemplateContainer** class of the *biobb_template
 ```python
 import argparse
 from biobb_common.generic.biobb_object import BiobbObject
-from biobb_common.configuration import  settings
+from biobb_common.configuration import settings
 from biobb_common.tools import file_utils as fu
 from biobb_common.tools.file_utils import launchlogger
 ```
@@ -392,10 +392,10 @@ def main():
 
     # 11. Adapt to match Class constructor (step 2)
     # Specific call of each building block
-    template_container(input_file_path1=args.input_file_path1, 
-                      output_file_path=args.output_file_path, 
-                      input_file_path2=args.input_file_path2, 
-                      properties=properties)
+    template_container(input_file_path1=args.input_file_path1,
+                       output_file_path=args.output_file_path,
+                       input_file_path2=args.input_file_path2,
+                       properties=properties)
 ```
 
 ### \_\_init\_\_() function
@@ -405,8 +405,7 @@ In the *\_\_init\_\_()* function initialises the **TemplateContainer** class. In
 
 ```python
 # 2. Adapt input and output file paths as required. Include all files, even optional ones
-def __init__(self, input_file_path1, output_file_path, 
-            input_file_path2 = None, properties = None, **kwargs) -> None:
+def __init__(self, input_file_path1, output_file_path, input_file_path2=None, properties=None, **kwargs) -> None:
     properties = properties or {}
 
     # 2.0 Call parent class constructor
@@ -415,12 +414,12 @@ def __init__(self, input_file_path1, output_file_path,
 
     # 2.1 Modify to match constructor parameters
     # Input/Output files
-    self.io_dict = { 
-        'in': { 'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2 }, 
-        'out': { 'output_file_path': output_file_path } 
+    self.io_dict = {
+        'in': {'input_file_path1': input_file_path1, 'input_file_path2': input_file_path2},
+        'out': {'output_file_path': output_file_path}
     }
 
-    # 3. Include all relevant properties here as 
+    # 3. Include all relevant properties here as
     # self.property_name = properties.get('property_name', property_default_value)
 
     # Properties specific for BB
@@ -454,7 +453,8 @@ If *restart* property is enabled, skip this step. This property is only used for
 
 ```python
 # 4. Setup Biobb
-if self.check_restart(): return 0
+if self.check_restart():
+    return 0
 self.stage_files()
 ```
 
@@ -471,9 +471,9 @@ if self.boolean_property:
 
 # 6. Build the actual command line as a list of items (elements order will be maintained)
 self.cmd = [self.binary_path,
-       ' '.join(instructions), 
-       self.stage_io_dict['out']['output_file_path'],
-       self.stage_io_dict['in']['input_file_path1']]
+            ' '.join(instructions),
+            self.stage_io_dict['out']['output_file_path'],
+            self.stage_io_dict['in']['input_file_path1']]
 fu.log('Creating command line with instructions and required arguments', self.out_log, self.global_log)
 ```
 
@@ -544,12 +544,12 @@ In the function *template_container()* we call the launch() function of the clas
 
 
 ```python
-def template_container(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> None:
+def template_container(input_file_path1: str, output_file_path: str, input_file_path2: str = None, properties: dict = None, **kwargs) -> int:
 """Create :class:`TemplateContainer <template.template_container.TemplateContainer>` class and
 execute the :meth:`launch() <template.template_container.TemplateContainer.launch>` method."""
 
-return TemplateContainer(input_file_path1=input_file_path1, 
-                        output_file_path=output_file_path,
-                        input_file_path2=input_file_path2,
-                        properties=properties, **kwargs).launch()
+return TemplateContainer(input_file_path1=input_file_path1,
+                            output_file_path=output_file_path,
+                            input_file_path2=input_file_path2,
+                            properties=properties, **kwargs).launch()
 ```

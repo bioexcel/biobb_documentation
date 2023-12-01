@@ -27,7 +27,8 @@ If you have never worked before with **Anaconda**, please take a look to the [of
 
 In the tutorials section of our official website we have developed a series of **installation and execution** tutorials. As a part of these tutorials we explain how to install Anaconda in different operating systems:
 
-* [Install Anaconda in **mac OS**](https://mmb.irbbarcelona.org/biobb/availability/tutorials/macos): steps for **installing Anaconda in mac OS** and once the environment is installed, execute one of our **BioBB tutorials**.
+* [Install Anaconda in **mac OS Intel**](https://mmb.irbbarcelona.org/biobb/availability/tutorials/macos): steps for **installing Anaconda in mac OS Intel** and once the environment is installed, execute one of our **BioBB tutorials**.
+* [Install Anaconda in **mac OS Apple Silicon**](https://mmb.irbbarcelona.org/biobb/availability/tutorials/macos-arm): steps for **installing Anaconda in mac OS Apple Silicon** and once the environment is installed, execute one of our **BioBB tutorials**.
 * [Install Anaconda in **Ubuntu**](https://mmb.irbbarcelona.org/biobb/availability/tutorials/ubuntu): steps for **installing Anaconda in Ubuntu** and once the environment is installed, execute one of our **BioBB tutorials**.
 * [Install Anaconda in **Windows 10** using the **Windows Subsystem for Linux**](https://mmb.irbbarcelona.org/biobb/availability/tutorials/windows): as some of the dependencies of our packages are not fully compatible with Windows, here you will find how to enable **Windows Subsystem for Linux**, then install **Ubuntu** in **Windows 10** and finally **install Anaconda in Ubuntu**. Once the environment is installed, execute one of our **BioBB tutorials**.
 

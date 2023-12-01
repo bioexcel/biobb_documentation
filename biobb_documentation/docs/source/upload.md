@@ -21,7 +21,7 @@ path_json_schemas=path_to_json_generator/
 
 ## Steps
 
-Then we will explain **all the steps** automatically done by the script defined in the previous section, plus the process to upload the package as a container to [Singularity hub](https://singularity-hub.org/).
+Then we will explain **all the steps** automatically done by the script defined in the previous section.
 
 ### Upload repository to GitHub
 
@@ -86,26 +86,6 @@ git checkout -b REPOSITORY
 
 Open folder */home/user/projects/bioconda-recipes/recipes/REPOSITORY* with your IDE.
 
-##### build.sh file
-
-In this file, we transform our Python files in binary files inside the bioconda container.
-
-```shell
-#!/usr/bin/env bash
-
-python3 setup.py install --single-version-externally-managed --record=record.txt
-
-mkdir -p $PREFIX/bin
-
-chmod u+x $SP_DIR/REPOSITORY/MODULE/TOOL.py
-cp $SP_DIR/REPOSITORY/MODULE/TOOL.py $PREFIX/bin/TOOL
-```
-In the *biobb_template* example:
-
-* **REPOSITORY**: biobb_template
-* **MODULE**: template
-* **TOOL**: template / template_container
-
 ##### meta.yaml file
 
 In this file we assign the build number and the requirements for the *biobb_template* package:
@@ -113,31 +93,31 @@ In this file we assign the build number and the requirements for the *biobb_temp
 ```yaml
 {% set name = "biobb_template" %}
 {% set version = "VERSION" %}
-{% set file_ext = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "HASH" %}
 
 package:
-  name: '\{\{ name|lower \}\}'
-  version: '\{\{ version \}\}'
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  '\{\{ hash_type \}\}': '\{\{ hash_value \}\}'
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: HASH
 
 build:
   number: 0
   noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  run_exports:
+    - {{ pin_subpackage(name, max_pin='x') }}
 
 requirements:
   host:
-    - python
+    - python >=3.8
     - setuptools
-    - biobb_common ==3.9.0
+    - biobb_common ==4.1.0
     - zip
   run:
-    - python
-    - biobb_common ==3.9.0
+    - python >=3.8
+    - biobb_common ==4.1.0
     - zip
 test:
   imports:
@@ -173,74 +153,11 @@ echo "Installing TOOL:"
 conda install -y  -c CHANNEL TOOL==VERSION
 ```
 
-### Create Docker container
+### Containers
 
-> The BioBB development team strongly advise against use custom conda dependencies not included in the anaconda official channels (conda and conda-forge). In case of using only dependencies included in the anaconda official channels you can skip this section.
+Note that Bioconda takes care of creating **automatically** the **Docker** and **Singularity** containers once the package is uploaded to [**anaconda.org**](https://anaconda.org/). Take into account that this process take a few hours. For finding the containers, please do:
 
-If you didn't use a *post-link.sh* file in the previous step, this process is automatic. Otherwise, you should write a Docker recipe and upload it to Docker Hub.
+* Docker: **https://quay.io/repository/biocontainers/<NAME_OF_PACKAGE>**
 
-You can write a Docker recipe in thousands of different ways. Here you have an example:
+* Singularity: **https://depot.galaxyproject.org/singularity/<NAME_OF_PACKAGE>:<VERSION>--<BUILD>** where the build can be found in the Docker above. So, for example, in order to download the biobb_amber singularity, go to the following link: [**https://depot.galaxyproject.org/singularity/biobb_amber:4.1.0--pyhdfd78af_0**](https://depot.galaxyproject.org/singularity/biobb_amber:4.1.0--pyhdfd78af_0)
 
-```shell
-FROM ubuntu:18.04
-
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH /opt/conda/bin:$PATH
-
-RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
-    libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
-
-RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
-
-RUN apt-get install -y curl grep sed dpkg && \
-    TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
-    curl -L "https://github.com/krallin/tini/releases/download/v$\{TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
-    dpkg -i tini.deb && \
-    rm tini.deb && \
-    apt-get clean
-
-RUN conda config --add channels defaults
-RUN conda config --add channels bioconda
-RUN conda config --add channels conda-forge
-RUN conda install -y biobb_template==VERSION
-
-ENTRYPOINT [ "/usr/bin/tini", "--" ]
-CMD [ "/bin/bash" ]
-```
-
-Where **VERSION** is the version you want to install in this container.
-
-### Create Singularity container
-
-Once the Docker container has been created, we are ready for create the Singularity container.
-
-#### Create recipe
-
-If your Docker container has been created **automatically by Bioconda** and is in *quay.io*, the **Singularity recipe** *Singularity.latest* should be like this:
-
-```shell
-Bootstrap: docker
-From: biobb_template:VERSION--py_0
-Registry: quay.io
-Namespace: biocontainers
-```
-Where **VERSION** is the version you want to install in this container.
-
-If you have created the Docker container **by your own**, the **Singularity recipe** *Singularity.latest* should be like this:
-
-```shell
-Bootstrap: docker
-From: biobb_template:VERSION
-Namespace: REPOSITORY
-```
-Where **VERSION** is the version you want to install in this container and **REPOSITORY** is the name of your repository in [Docker Hub](https://hub.docker.com/).
-
-#### Upload to Singularity
-
-All the **BioBB** packages in **GitHub** are linked to **Singularity Hub** via [Webhooks](https://developer.github.com/webhooks/), so after **uploading to GitHub** the *Singularity.latest* file, you just must wait until the container is created in [Singularity Hub](https://singularity-hub.org/).
