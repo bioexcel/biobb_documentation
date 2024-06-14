@@ -43,7 +43,7 @@ After the definition of the Template class we define all the arguments explained
 | Short description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Mandatory.
 | Long description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Optional.
 
-Args:        
+Args:
     input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top (edam:format_3881).
     input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd (edam:format_3878).
     output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip (edam:format_3987).
@@ -52,14 +52,15 @@ Args:
         * **binary_path** (*str*) - ("zip") Example of executable binary property.
         * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
         * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
 
 Examples:
     This is a use example of how to use the building block from Python::
 
         from biobb_template.template.template import template
 
-        prop = { 
-            'boolean_property': True 
+        prop = {
+            'boolean_property': True
         }
         template(input_file_path1='/path/to/myTopology.top',
                 output_file_path='/path/to/newCompressedFile.zip',
@@ -157,7 +158,7 @@ def __init__(self, input_file_path1, output_file_path, input_file_path2=None, pr
 In the function *launch()* we perform all the actions needed for the wrapping: creation of temporary folder(s), creation of command line, execution of command line and removing of the temporary folder(s). In this case we will comment all the blocks that shape this function separately.
 
 #### @launchlogger decorator
-Decorator used for wrapping the log. 
+Decorator used for wrapping the log.
 
 
 ```python
@@ -234,7 +235,7 @@ self.run_biobb()
 ```
 
 #### Remove temporary file(s)
-Remove temporary file(s) created during the execution. 
+Remove temporary file(s) created during the execution.
 
 ```python
 # Remove temporary file(s)
@@ -324,6 +325,7 @@ Args:
         * **binary_path** (*str*) - ("zip") Example of executable binary property.
         * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
         * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
         * **container_path** (*str*) - (None) Container path definition.
         * **container_image** (*str*) - ('mmbirb/zip:latest') Container image definition.
         * **container_volume_path** (*str*) - ('/tmp') Container volume path definition.
@@ -336,7 +338,7 @@ Examples:
 
         from biobb_template.template.template_container import template_container
 
-        prop = { 
+        prop = {
             'boolean_property': True,
             'container_path': 'docker',
             'container_image': 'mmbirb/zip:latest',
@@ -438,7 +440,7 @@ def __init__(self, input_file_path1, output_file_path, input_file_path2=None, pr
 In the function *launch()* we perform all the actions needed for the wrapping: creation of temporary folder(s), mapping of these temporary folder(s) to the container, creation of command line, execution of command line, retrieve of data from the container and removing of the temporary folder(s). In this case we will comment all the blocks that shape this function separately.
 
 #### @launchlogger decorator
-Decorator used for wrapping the log. 
+Decorator used for wrapping the log.
 
 
 ```python
@@ -511,7 +513,7 @@ self.copy_to_host()
 ```
 
 #### Remove temporary file(s)
-Remove temporary file(s) created during the execution. 
+Remove temporary file(s) created during the execution.
 
 
 ```python

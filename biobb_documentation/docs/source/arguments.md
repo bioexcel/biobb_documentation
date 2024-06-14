@@ -41,7 +41,7 @@ template --config template.yml --input_file_path1 input1 --input_file_path2 inpu
 ```
 
 * **JSON**
- 
+
 ```Shell
 template --config template.json --input_file_path1 input1 --input_file_path2 input2 --output_file_path output
 ```
@@ -62,9 +62,9 @@ Properties can also be passed to the Python class as a **Python dictionary** dir
 prop = {
     "boolean_property": False
 }
-template(input_file_path1=input1, 
-         output_file_path=output, 
-         input_file_path2=input2, 
+template(input_file_path1=input1,
+         output_file_path=output,
+         input_file_path2=input2,
          properties=prop)
 ```
 
@@ -83,6 +83,7 @@ Below there is the dictionary of properties for the **template.py** tool:
 * **binary_path** (*str*) - ("zip") Example of executable binary property.
 * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
 * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
 
 There are two types of properties in this template:
 
@@ -111,6 +112,7 @@ Below there is the dictionary of properties for the **template_container.py** to
 * **binary_path** (*str*) - ("zip") Example of executable binary property.
 * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
 * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
 * **container_path** (*str*) - (None) Container path definition.
 * **container_image** (*str*) - ('mmbirb/zip:latest') Container image definition.
 * **container_volume_path** (*str*) - ('/tmp') Container volume path definition.
