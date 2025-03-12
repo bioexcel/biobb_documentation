@@ -95,7 +95,7 @@ The structure of the docs folder is as follows:
         * template.rst
     * Makefile
     * requirements.txt
-    
+
 #### source folder
 
 [https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
@@ -188,7 +188,7 @@ biobb_template
 
 [https://github.com/bioexcel/biobb_template/blob/master/biobb_template/docs/source/readme.md](https://github.com/bioexcel/biobb_template/tree/master/biobb_template/docs/source)
 
-**README.md** file written in **Markdown** language that is a copy of the main **README.md** file of the **BioBB** package. 
+**README.md** file written in **Markdown** language that is a copy of the main **README.md** file of the **BioBB** package.
 
 ##### schema.html
 
@@ -252,11 +252,11 @@ The arguments must be inside a set of triple quotes just after the class definit
 | Long description for the `tool_name <http://tool_name-documentation.org>`_ module in Restructured Text (reST) syntax. Optional.
 
 Args:
-    arg_name1 (arg_type): Description for argument 1. File type: input / output. `Sample file <url_to_sample_file1>`_. Accepted formats: format1 (edam:format_XXXX), format2 (edam:format_XXXX), format3 (edam:format_XXXX). 
+    arg_name1 (arg_type): Description for argument 1. File type: input / output. `Sample file <url_to_sample_file1>`_. Accepted formats: format1 (edam:format_XXXX), format2 (edam:format_XXXX), format3 (edam:format_XXXX).
     arg_name2 (arg_type) (Optional): Description for argument 2. File type: input / output. `Sample file <url_to_sample_file2>`_. Accepted formats: format1 (edam:format_XXXX), format2 (edam:format_XXXX).
     properties (dic):
         * **property1** (*prop_type*) - (property1_default) [min-max|step] [WF property] Property 1 description. Values: value1 (description for value1), value2 (description for value2), value3 (description for value3).
-        * **property2** (*prop_type*) - (property2_default) Property 2 description. 
+        * **property2** (*prop_type*) - (property2_default) Property 2 description.
         * **property3** (*dic*) - (None) Property 3 description.
             * **parameter1** (*param_type*) - (parameter1_default) Parameter 1 description. Values: value1 (description for value1), value2 (description for value2), value3 (description for value3).
 
@@ -265,8 +265,8 @@ Examples:
 
         from biobb_package.tool_name.tool_name import tool_name
 
-        prop = { 
-            'some_boolean_property': True 
+        prop = {
+            'some_boolean_property': True
         }
         tool_name(arg_name1='/path/to/arg_name1.file',
                   arg_name2='/path/to/arg_name2.file',
@@ -276,7 +276,7 @@ Info:
     * wrapped_software:
         * name: Wrapped Software
         * version: >=3.0
-        * license: GNU 
+        * license: GNU
     * ontology:
         * name: EDAM
         * schema: http://edamontology.org/EDAM.owl
@@ -292,7 +292,7 @@ class Template():
     | Short description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Mandatory.
     | Long description for the `template <http://templatedocumentation.org>`_ module in Restructured Text (reST) syntax. Optional.
 
-    Args:        
+    Args:
         input_file_path1 (str): Description for the first input file path. File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: top (edam:format_3881).
         input_file_path2 (str) (Optional): Description for the second input file path (optional). File type: input. `Sample file <https://urlto.sample>`_. Accepted formats: dcd (edam:format_3878).
         output_file_path (str): Description for the output file path. File type: output. `Sample file <https://urlto.sample>`_. Accepted formats: zip (edam:format_3987).
@@ -301,14 +301,15 @@ class Template():
             * **binary_path** (*str*) - ("zip") Example of executable binary property.
             * **remove_tmp** (*bool*) - (True) [WF property] Remove temporal files.
             * **restart** (*bool*) - (False) [WF property] Do not execute if output files exist.
+            * **sandbox_path** (*str*) - ("./") [WF property] Parent path to the sandbox directory.
 
     Examples:
         This is a use example of how to use the building block from Python::
 
             from biobb_template.template.template import template
 
-            prop = { 
-                'boolean_property': True 
+            prop = {
+                'boolean_property': True
             }
             template(input_file_path1='/path/to/myTopology.top',
                     output_file_path='/path/to/newCompressedFile.zip',
